@@ -13,7 +13,7 @@
 
 #include <string>
 
-namespace nexus_api {
+namespace nexusApi {
 	class ILogger
 	{
 	  enum class Level
