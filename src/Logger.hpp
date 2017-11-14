@@ -13,30 +13,57 @@
 
 #include <string>
 
-namespace nexusApi {
-	class ILogger
-	{
-	  enum class Level
-	  {
-		DEFAULT 		= 0,
-		INFO 			= 1,
-		SUCCESS			= 2,
-		WARNING 		= 3,
-		ERROR			= 4,
-		FATAL_ERROR 	= 5
-	  };
+namespace ziaAPINexus {
+class ILogger {
+  enum class Level {
+	DEFAULT = 0,
+	INFO = 1,
+	SUCCESS = 2,
+	WARNING = 3,
+	ERROR = 4,
+	FATAL_ERROR = 5
+  };
 
-	  virtual ~ILogger() = default;
+  virtual ~ILogger() = default;
 
-	  virtual log(const ILogger::Level &, const std::string &) = 0;
+  /**
+   * Log message
+   * @param level Type of log
+   * @param msg Message
+   */
+  virtual void log(const ILogger::Level & level, const std::string & msg) = 0;
 
-	  virtual logDefault(const std::string &) = 0;
-	  virtual logInfo(const std::string &) = 0;
-	  virtual logSuccess(const std::string &) = 0;
-	  virtual logWarning(const std::string &) = 0;
-	  virtual logError(const std::string &) = 0;
-	  virtual logFatalError(const std::string &) = 0;
-	};
+  /**
+   * Log default message
+   * @param msg
+   */
+  virtual void logDefault(const std::string & msg) = 0;
+  /**
+   * Log info message
+   * @param msg
+   */
+  virtual void logInfo(const std::string & msg) = 0;
+  /**
+   * Log success message
+   * @param msg
+   */
+  virtual void logSuccess(const std::string & msg) = 0;
+  /**
+   * Log warning message
+   * @param msg
+   */
+  virtual void logWarning(const std::string & msg) = 0;
+  /**
+   * Log error message
+   * @param msg
+   */
+  virtual void logError(const std::string & msg) = 0;
+  /**
+   * Log fatal error message
+   * @param msg
+   */
+  virtual void logFatalError(const std::string & msg) = 0;
+};
 }
 
 #endif //CPP_ZIA_API_LOGGER_HPP
