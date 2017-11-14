@@ -11,7 +11,7 @@
 #ifndef CPP_ZIA_API_HOOKS_HPP
 #define CPP_ZIA_API_HOOKS_HPP
 
-namespace ziaAPINexus {
+namespace nexusZiaApi {
 class IHooks {
   enum class Types {
 	DEFAULT					= 0,

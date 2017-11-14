@@ -13,7 +13,7 @@
 
 #include <string>
 
-namespace ziaAPINexus {
+namespace nexusZiaApi {
 	class IConfigKey {
 	  enum class Type {
 		VALUE	= 0,

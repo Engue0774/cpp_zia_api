@@ -15,7 +15,7 @@
 
 #include "Config.hpp"
 
-namespace ziaAPINexus {
+namespace nexusZiaApi {
 	class IModuleCore
 	{
 	  virtual ~IModuleCore() = default;

@@ -13,7 +13,7 @@
 
 #include <string>
 
-namespace ziaAPINexus {
+namespace nexusZiaApi {
 class ILogger {
   enum class Level {
 	DEFAULT = 0,

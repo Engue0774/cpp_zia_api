@@ -8,8 +8,8 @@
 ** Last update Tue Nov 14 18:21:46 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_NEXUSAPIZIA_HPP
-#define CPP_ZIA_API_NEXUSAPIZIA_HPP
+#ifndef CPP_ZIA_API_NEXUSZIAAPI_HPP
+#define CPP_ZIA_API_NEXUSZIAAPI_HPP
 
 /**
  *	@brief This header is for include all header of API
@@ -27,4 +27,4 @@
 
 #include "Core.hpp"
 
-#endif //CPP_ZIA_API_NEXUSAPIZIA_HPP
+#endif //CPP_ZIA_API_NEXUSZIAAPI_HPP

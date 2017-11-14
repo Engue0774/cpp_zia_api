@@ -16,7 +16,7 @@
 
 #include "ConfigKey.hpp"
 
-namespace ziaAPINexus {
+namespace nexusZiaApi {
 	class IModuleConfig
 	{
 	  enum class State
