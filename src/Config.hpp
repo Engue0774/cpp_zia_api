@@ -39,6 +39,7 @@ namespace nexusZiaApi {
 	   * Load config of module
 	   */
 	  virtual void 	load(void) = 0;
+
 	  /**
 	   * Reload config of module
 	   */
@@ -64,7 +65,9 @@ namespace nexusZiaApi {
 	   * @param key
 	   * @return const IConfigKey &
 	   */
+
 	  virtual const IConfigKey & getKeyOne(const std::string & key) = 0;
+
 	  /**
 	   * Get list of key in config of module
 	   * @param key

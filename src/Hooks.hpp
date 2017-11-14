@@ -48,6 +48,7 @@ class IHooks {
    * @param name Name of module
    */
   virtual void subscribe(const Types & type, const std::string & name) = 0;
+
   /**
    * Remove hook register
    * @param type Type hooks

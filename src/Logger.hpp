@@ -37,27 +37,33 @@ class ILogger {
    * Log default message
    * @param msg
    */
+
   virtual void logDefault(const std::string & msg) = 0;
   /**
    * Log info message
    * @param msg
    */
+
   virtual void logInfo(const std::string & msg) = 0;
   /**
    * Log success message
    * @param msg
    */
+
   virtual void logSuccess(const std::string & msg) = 0;
   /**
    * Log warning message
    * @param msg
    */
+
   virtual void logWarning(const std::string & msg) = 0;
+
   /**
    * Log error message
    * @param msg
    */
   virtual void logError(const std::string & msg) = 0;
+
   /**
    * Log fatal error message
    * @param msg
