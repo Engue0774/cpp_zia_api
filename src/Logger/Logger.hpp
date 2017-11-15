@@ -15,6 +15,7 @@
 
 namespace nexusZiaApi {
 class ILogger {
+ public:
   enum class Level {
 	DEFAULT = 0,
 	INFO = 1,

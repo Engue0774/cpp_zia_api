@@ -19,6 +19,7 @@
 namespace nexusZiaApi {
 	class IModuleConfig
 	{
+	 public:
 	  enum class State
 	  {
 		UNLOADED 		= 0,

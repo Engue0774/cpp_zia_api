@@ -18,6 +18,7 @@
 
 namespace nexusZiaApi {
 class IHttpData {
+ public:
   virtual ~IHttpData() = default;
 
   /**

@@ -14,10 +14,13 @@
 #include <string>
 
 #include "../Config/Config.hpp"
+#include "../Http/HttpData.hpp"
+#include "../Hooks/Hooks.hpp"
 
 namespace nexusZiaApi {
 	class IModuleCore
 	{
+	 public:
 	  virtual ~IModuleCore() = default;
 
 	  /**
@@ -38,7 +41,7 @@ namespace nexusZiaApi {
 
 	  /**
 	   * Set name of module
-	   * @param name
+	   * @param name Name of module
 	   */
 	  virtual void	setName(const std::string & name) = 0;
 
@@ -47,6 +50,13 @@ namespace nexusZiaApi {
 	   * @return const IModuleConfig
 	   */
 	  virtual const IModuleConfig & getModuleConfig(void) = 0;
+
+	  /**
+	   * Function call if event in the hook subsribe
+	   * @param hooksType Type of hook
+	   * @param data Data http
+	   */
+	  virtual void hooksCall(const IHooks::Types & hooksType, const IHttpData & data) = 0;
 	};
 }
 

@@ -15,6 +15,7 @@
 
 namespace nexusZiaApi {
 	class IConfigKey {
+	 public:
 	  enum class Type {
 		VALUE	= 0,
 		SCOPE	= 1

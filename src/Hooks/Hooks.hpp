@@ -15,18 +15,15 @@
 
 namespace nexusZiaApi {
 class IHooks {
+ public:
   enum class Types {
 	DEFAULT					= 0,
-	POST_CONNECT			= 1,
-	REQUEST_BEFORE_PARSING	= 2,
-	REQUEST_AFTER_PARSING	= 3,
-	REQUEST_DONE			= 4,
-	REQUEST_BEFORE_BUILD	= 5,
-	REQUEST_POST_BUILD		= 6,
-	REQUEST_SEND			= 7,
-	NETWORK_CONNECT			= 8,
-	NETWORK_RECV			= 9,
-	NETWORK_SEND			= 10
+	REQUEST_BEFORE_PARSING	= 1,
+	REQUEST_AFTER_PARSING	= 2,
+	REQUEST_DONE			= 3,
+	RESPONSE_BEFORE_BUILD	= 4,
+	RESPONSE_POST_BUILD		= 5,
+	RESPONSE_SEND			= 6
   };
 
   virtual ~IHooks() = default;
