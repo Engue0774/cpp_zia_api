@@ -62,7 +62,7 @@ namespace nexusZiaApi {
 	   * @param configKey
 	   * @return
 	   */
-	  virtual void setKey(const std::string & key, IConfigKey configKey) = 0;
+	  virtual void setKey(const std::string & key, const IConfigKey & configKey) = 0;
 
 	  /**
 	   * Get key unique in config of module
