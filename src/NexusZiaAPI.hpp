@@ -26,5 +26,6 @@
 #include "Http/HttpHeader.hpp"
 
 #include "Core/Core.hpp"
+#include "Core/APIServer.hpp"
 
 #endif //CPP_ZIA_API_NEXUSZIAAPI_HPP
