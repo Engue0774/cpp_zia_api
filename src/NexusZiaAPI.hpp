@@ -15,16 +15,16 @@
  *	@brief This header is for include all header of API
  */
 
-#include "Hooks.hpp"
+#include "Hooks/Hooks.hpp"
 
-#include "Logger.hpp"
+#include "Logger/Logger.hpp"
 
-#include "ConfigKey.hpp"
-#include "Config.hpp"
+#include "Config/ConfigKey.hpp"
+#include "Config/Config.hpp"
 
-#include "HTTPRequest.hpp"
-#include "HTTPReponse.hpp"
+#include "Http/HttpData.hpp"
+#include "Http/HttpHeader.hpp"
 
-#include "Core.hpp"
+#include "Core/Core.hpp"
 
 #endif //CPP_ZIA_API_NEXUSZIAAPI_HPP

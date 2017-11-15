@@ -13,7 +13,7 @@
 
 #include <string>
 
-#include "Config.hpp"
+#include "../Config/Config.hpp"
 
 namespace nexusZiaApi {
 	class IModuleCore
