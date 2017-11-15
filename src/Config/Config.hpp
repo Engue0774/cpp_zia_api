@@ -20,6 +20,9 @@ namespace nexusZiaApi {
 	class IModuleConfig
 	{
 	 public:
+	  /**
+	   * State of config loading
+	   */
 	  enum class State
 	  {
 		UNLOADED 		= 0,

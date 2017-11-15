@@ -21,6 +21,16 @@ namespace nexusZiaApi {
 	class IModuleCore
 	{
 	 public:
+	  /**
+	   * State of module loading
+	   * 0: OFF / 1: UP
+	   */
+	  enum class State
+	  {
+		OFF	= 0,
+		UP	= 1
+	  };
+
 	  virtual ~IModuleCore() = default;
 
 	  /**

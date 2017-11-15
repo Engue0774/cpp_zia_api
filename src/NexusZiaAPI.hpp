@@ -12,7 +12,7 @@
 #define CPP_ZIA_API_NEXUSZIAAPI_HPP
 
 /**
- *	@brief This header is for include all header of API
+ *	@file This header is for include all header of API
  */
 
 #include "Hooks/Hooks.hpp"

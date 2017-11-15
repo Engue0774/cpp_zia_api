@@ -16,6 +16,9 @@
 namespace nexusZiaApi {
 class IHooks {
  public:
+  /**
+   * Define type of hook define
+   */
   enum class Types {
 	DEFAULT					= 0,
 	REQUEST_BEFORE_PARSING	= 1,
