@@ -1,0 +1,107 @@
+\hypertarget{classnexusZiaApi_1_1IModuleCore}{}\section{nexus\+Zia\+Api\+:\+:I\+Module\+Core Class Reference}
+\label{classnexusZiaApi_1_1IModuleCore}\index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+
+
+Collaboration diagram for nexus\+Zia\+Api\+:\+:I\+Module\+Core\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classnexusZiaApi_1_1IModuleCore__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classnexusZiaApi_1_1IModuleCore_abc0dcb61041187581a512822e934bc25}{State} \{ {\bfseries O\+FF} = 0, 
+{\bfseries UP} = 1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleCore_ae52fea1f96d8954f0b128a66405d4a45}{start} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleCore_ad47e9254ca0dcbe6cfcc5756ab8a1b87}{stop} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleCore_a36b1740f097ba13db39431f1c5f9f8a9}{reload} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleCore_a5770e4c73d8964916d7e429482b52e72}{set\+Name} (const std\+::string \&name)=0
+\item 
+virtual const \hyperlink{classnexusZiaApi_1_1IModuleConfig}{I\+Module\+Config} \& \hyperlink{classnexusZiaApi_1_1IModuleCore_a953c7450755ba4953251029980084a6c}{get\+Module\+Config} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleCore_a32cce7b43a738e457b1e436c119cd489}{hooks\+Call} (const \hyperlink{classnexusZiaApi_1_1IHooks_ab414a80fd9ed1c967916942ec5c20433}{I\+Hooks\+::\+Types} \&hooks\+Type, \hyperlink{classnexusZiaApi_1_1IHttpData}{I\+Http\+Data} \&data)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!State@{State}}
+\index{State@{State}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{State}{State}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf nexus\+Zia\+Api\+::\+I\+Module\+Core\+::\+State}\hspace{0.3cm}{\ttfamily [strong]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_abc0dcb61041187581a512822e934bc25}{}\label{classnexusZiaApi_1_1IModuleCore_abc0dcb61041187581a512822e934bc25}
+State of module loading 0\+: O\+FF / 1\+: UP 
+
+\subsection{Member Function Documentation}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!get\+Module\+Config@{get\+Module\+Config}}
+\index{get\+Module\+Config@{get\+Module\+Config}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{get\+Module\+Config(void)=0}{getModuleConfig(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual const {\bf I\+Module\+Config}\& nexus\+Zia\+Api\+::\+I\+Module\+Core\+::get\+Module\+Config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_a953c7450755ba4953251029980084a6c}{}\label{classnexusZiaApi_1_1IModuleCore_a953c7450755ba4953251029980084a6c}
+Get module config \begin{DoxyReturn}{Returns}
+const \hyperlink{classnexusZiaApi_1_1IModuleConfig}{I\+Module\+Config} 
+\end{DoxyReturn}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!hooks\+Call@{hooks\+Call}}
+\index{hooks\+Call@{hooks\+Call}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{hooks\+Call(const I\+Hooks\+::\+Types \&hooks\+Type, I\+Http\+Data \&data)=0}{hooksCall(const IHooks::Types &hooksType, IHttpData &data)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Core\+::hooks\+Call (
+\begin{DoxyParamCaption}
+\item[{const {\bf I\+Hooks\+::\+Types} \&}]{hooks\+Type, }
+\item[{{\bf I\+Http\+Data} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_a32cce7b43a738e457b1e436c119cd489}{}\label{classnexusZiaApi_1_1IModuleCore_a32cce7b43a738e457b1e436c119cd489}
+Function call if event in the hook subsribe 
+\begin{DoxyParams}{Parameters}
+{\em hooks\+Type} & Type of hook \\
+\hline
+{\em data} & Data http \\
+\hline
+\end{DoxyParams}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!reload@{reload}}
+\index{reload@{reload}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{reload(void)=0}{reload(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Core\+::reload (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_a36b1740f097ba13db39431f1c5f9f8a9}{}\label{classnexusZiaApi_1_1IModuleCore_a36b1740f097ba13db39431f1c5f9f8a9}
+Reload module
+
+Module is not stop and restart, module is always UP \index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{set\+Name(const std\+::string \&name)=0}{setName(const std::string &name)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Core\+::set\+Name (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_a5770e4c73d8964916d7e429482b52e72}{}\label{classnexusZiaApi_1_1IModuleCore_a5770e4c73d8964916d7e429482b52e72}
+Set name of module 
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of module \\
+\hline
+\end{DoxyParams}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!start@{start}}
+\index{start@{start}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{start(void)=0}{start(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Core\+::start (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_ae52fea1f96d8954f0b128a66405d4a45}{}\label{classnexusZiaApi_1_1IModuleCore_ae52fea1f96d8954f0b128a66405d4a45}
+Start module \index{nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}!stop@{stop}}
+\index{stop@{stop}!nexus\+Zia\+Api\+::\+I\+Module\+Core@{nexus\+Zia\+Api\+::\+I\+Module\+Core}}
+\subsubsection[{\texorpdfstring{stop(void)=0}{stop(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Core\+::stop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleCore_ad47e9254ca0dcbe6cfcc5756ab8a1b87}{}\label{classnexusZiaApi_1_1IModuleCore_ad47e9254ca0dcbe6cfcc5756ab8a1b87}
+Stop module 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/convly/delivery/cpp\+\_\+zia\+\_\+api/src/\+Core/Core.\+hpp\end{DoxyCompactItemize}
