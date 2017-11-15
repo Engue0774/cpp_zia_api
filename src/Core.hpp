@@ -21,10 +21,26 @@ namespace nexusZiaApi {
 	  virtual ~IModuleCore() = default;
 
 	  /**
+	   * Start module
+	   */
+	  virtual void	start(void) = 0;
+
+	  /**
+	   * Stop module
+	   */
+	  virtual void	stop(void) = 0;
+
+	  /**
+	   * Reload module
+	   * @details Module is not stop and restart, module is always UP
+	   */
+	  virtual void	reload(void) = 0;
+
+	  /**
 	   * Set name of module
 	   * @param name
 	   */
-	  virtual void setName(const std::string & name) = 0;
+	  virtual void	setName(const std::string & name) = 0;
 
 	  /**
 	   * Get module config
