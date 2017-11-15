@@ -1,0 +1,130 @@
+\hypertarget{classnexusZiaApi_1_1IModuleConfig}{}\section{nexus\+Zia\+Api\+:\+:I\+Module\+Config Class Reference}
+\label{classnexusZiaApi_1_1IModuleConfig}\index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+
+
+Collaboration diagram for nexus\+Zia\+Api\+:\+:I\+Module\+Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classnexusZiaApi_1_1IModuleConfig__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classnexusZiaApi_1_1IModuleConfig_af31b1666dea53f8776c7399e6df9e865}{State} \{ {\bfseries U\+N\+L\+O\+A\+D\+ED} = 0, 
+{\bfseries L\+O\+A\+D\+\_\+\+S\+T\+A\+RT} = 1, 
+{\bfseries L\+O\+A\+D\+ED} = 2, 
+{\bfseries E\+R\+R\+OR} = 3
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleConfig_ac41aad2c35f3634e0bb23e4e55e1f8b8}{init} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleConfig_a9b1efedd95b96b2e019470a89370997a}{load} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleConfig_a9171887da472d0d4c9ee237ed9d1d754}{reload} (void)=0
+\item 
+virtual const \hyperlink{classnexusZiaApi_1_1IModuleConfig_af31b1666dea53f8776c7399e6df9e865}{State} \& \hyperlink{classnexusZiaApi_1_1IModuleConfig_a4e54fa1883c81395351091150b3aefb4}{get\+State} (void)=0
+\item 
+virtual void \hyperlink{classnexusZiaApi_1_1IModuleConfig_a26b6b940d232e699a405ad588ffab040}{set\+Key} (const std\+::string \&key, const \hyperlink{classnexusZiaApi_1_1IConfigKey}{I\+Config\+Key} \&config\+Key)=0
+\item 
+virtual const \hyperlink{classnexusZiaApi_1_1IConfigKey}{I\+Config\+Key} \& \hyperlink{classnexusZiaApi_1_1IModuleConfig_a417a022a19e631ebdc360cc5d06c91d2}{get\+Key\+One} (const std\+::string \&key)=0
+\item 
+virtual const std\+::list$<$ \hyperlink{classnexusZiaApi_1_1IConfigKey}{I\+Config\+Key} $>$ \& \hyperlink{classnexusZiaApi_1_1IModuleConfig_a277c40a0589820ac67f3c33bfa8a79da}{get\+Key} (const std\+::string \&key)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!State@{State}}
+\index{State@{State}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{State}{State}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf nexus\+Zia\+Api\+::\+I\+Module\+Config\+::\+State}\hspace{0.3cm}{\ttfamily [strong]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_af31b1666dea53f8776c7399e6df9e865}{}\label{classnexusZiaApi_1_1IModuleConfig_af31b1666dea53f8776c7399e6df9e865}
+State of config loading 
+
+\subsection{Member Function Documentation}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!get\+Key@{get\+Key}}
+\index{get\+Key@{get\+Key}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{get\+Key(const std\+::string \&key)=0}{getKey(const std::string &key)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual const std\+::list$<${\bf I\+Config\+Key}$>$\& nexus\+Zia\+Api\+::\+I\+Module\+Config\+::get\+Key (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_a277c40a0589820ac67f3c33bfa8a79da}{}\label{classnexusZiaApi_1_1IModuleConfig_a277c40a0589820ac67f3c33bfa8a79da}
+Get list of key in config of module 
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::list$<$\+I\+Configkey$>$ 
+\end{DoxyReturn}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!get\+Key\+One@{get\+Key\+One}}
+\index{get\+Key\+One@{get\+Key\+One}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{get\+Key\+One(const std\+::string \&key)=0}{getKeyOne(const std::string &key)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual const {\bf I\+Config\+Key}\& nexus\+Zia\+Api\+::\+I\+Module\+Config\+::get\+Key\+One (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_a417a022a19e631ebdc360cc5d06c91d2}{}\label{classnexusZiaApi_1_1IModuleConfig_a417a022a19e631ebdc360cc5d06c91d2}
+Get key unique in config of module 
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const \hyperlink{classnexusZiaApi_1_1IConfigKey}{I\+Config\+Key} \& 
+\end{DoxyReturn}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{get\+State(void)=0}{getState(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual const {\bf State}\& nexus\+Zia\+Api\+::\+I\+Module\+Config\+::get\+State (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_a4e54fa1883c81395351091150b3aefb4}{}\label{classnexusZiaApi_1_1IModuleConfig_a4e54fa1883c81395351091150b3aefb4}
+Get state of module config In loading, is load, error in config, etc \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!init@{init}}
+\index{init@{init}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{init(void)=0}{init(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Config\+::init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_ac41aad2c35f3634e0bb23e4e55e1f8b8}{}\label{classnexusZiaApi_1_1IModuleConfig_ac41aad2c35f3634e0bb23e4e55e1f8b8}
+Init config of module Default value of each key, etc \index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!load@{load}}
+\index{load@{load}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{load(void)=0}{load(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Config\+::load (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_a9b1efedd95b96b2e019470a89370997a}{}\label{classnexusZiaApi_1_1IModuleConfig_a9b1efedd95b96b2e019470a89370997a}
+Load config of module \index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!reload@{reload}}
+\index{reload@{reload}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{reload(void)=0}{reload(void)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Config\+::reload (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_a9171887da472d0d4c9ee237ed9d1d754}{}\label{classnexusZiaApi_1_1IModuleConfig_a9171887da472d0d4c9ee237ed9d1d754}
+Reload config of module \index{nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}!set\+Key@{set\+Key}}
+\index{set\+Key@{set\+Key}!nexus\+Zia\+Api\+::\+I\+Module\+Config@{nexus\+Zia\+Api\+::\+I\+Module\+Config}}
+\subsubsection[{\texorpdfstring{set\+Key(const std\+::string \&key, const I\+Config\+Key \&config\+Key)=0}{setKey(const std::string &key, const IConfigKey &configKey)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void nexus\+Zia\+Api\+::\+I\+Module\+Config\+::set\+Key (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{key, }
+\item[{const {\bf I\+Config\+Key} \&}]{config\+Key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classnexusZiaApi_1_1IModuleConfig_a26b6b940d232e699a405ad588ffab040}{}\label{classnexusZiaApi_1_1IModuleConfig_a26b6b940d232e699a405ad588ffab040}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+{\em config\+Key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/convly/delivery/cpp\+\_\+zia\+\_\+api/src/\+Config/Config.\+hpp\end{DoxyCompactItemize}
