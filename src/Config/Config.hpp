@@ -50,7 +50,7 @@ namespace nexusZiaApi {
 	   * In loading, is load, error in config, etc
 	   * @return
 	   */
-	  virtual const ModuleConfig::State & getState(void) = 0;
+	  virtual const State & getState(void) = 0;
 
 	  /**
 	   *
@@ -58,7 +58,7 @@ namespace nexusZiaApi {
 	   * @param configKey
 	   * @return
 	   */
-	  virtual setKey(const std::string & key, IConfigKey configKey) = 0;
+	  virtual void setKey(const std::string & key, IConfigKey configKey) = 0;
 
 	  /**
 	   * Get key unique in config of module
@@ -72,7 +72,7 @@ namespace nexusZiaApi {
 	   * @param key
 	   * @return std::list<IConfigkey>
 	   */
-	  virtual const std::list<ziaAPINexus::IConfigKey> & getKey(const std::string & key) = 0;
+	  virtual const std::list<IConfigKey> & getKey(const std::string & key) = 0;
 	};
 }
 

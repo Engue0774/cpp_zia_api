@@ -11,9 +11,12 @@
 #ifndef CPP_ZIA_API_HTTPHEADER_HPP
 #define CPP_ZIA_API_HTTPHEADER_HPP
 
+#include <string>
+
 namespace nexusZiaApi {
 class IHttpHeader {
-  virtual ~HttpHeader() = default;
+
+  virtual ~IHttpHeader() = default;
 
   /**
    * Set key of header HTTP
@@ -21,14 +24,14 @@ class IHttpHeader {
    * @param value
    * @return
    */
-  virtual setKey(const std::string & key, const std::string & value) = 0;
+  virtual void setKey(const std::string & key, const std::string & value) = 0;
 
   /**
    * Get key of header HTTP
    * @param key
    * @return
    */
-  virtual getKey(const std::string & key) = 0;
+  virtual const std::string & getKey(const std::string & key) = 0;
 };
 }
 

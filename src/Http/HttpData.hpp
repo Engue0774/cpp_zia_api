@@ -12,7 +12,7 @@
 #define CPP_ZIA_API_HTTPDATA_HPP
 
 #include <vector>
-#include <cstddef>
+#include <string>
 
 #include "HttpHeader.hpp"
 
@@ -43,13 +43,13 @@ class IHttpData {
    * Set the body of HTTP Data
    * @param data
    */
-  virtual void	setBody(const std::vector<std::byte> & data) = 0;
+  virtual void	setBody(const std::string & data) = 0;
 
   /**
    * Get body of HTTP Data
    * @return
    */
-  virtual const std::vector<std::byte> & getBody(void) const = 0;
+  virtual const std::string & getBody(void) const = 0;
 };
 }
 
