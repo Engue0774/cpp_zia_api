@@ -56,7 +56,7 @@ namespace nexusZiaApi {
 	   * @param hooksType Type of hook
 	   * @param data Data http
 	   */
-	  virtual void hooksCall(const IHooks::Types & hooksType, const IHttpData & data) = 0;
+	  virtual void hooksCall(const IHooks::Types & hooksType, IHttpData & data) = 0;
 	};
 }
 
