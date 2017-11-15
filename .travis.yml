@@ -1,0 +1,12 @@
+sudo: required
+dist: trusty
+language: cpp
+compiler: g++
+script: cd tests && g++ main.cpp -std=c++14
+install: export CXX="g++-5"
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
