@@ -65,7 +65,6 @@ namespace nexusZiaApi {
 	   * @param key
 	   * @return const IConfigKey &
 	   */
-
 	  virtual const IConfigKey & getKeyOne(const std::string & key) = 0;
 
 	  /**
