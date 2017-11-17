@@ -2,10 +2,61 @@ dist: trusty
 language: cpp
 compiler: g++
 script: cd tests && g++ main.cpp -std=c++11
-install: export CXX="g++-5"
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-5
+matrix:
+  include:
+  #Linux GCC OLD
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-4.9
+    env:
+    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+  #Linux GCC LAST
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-7
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+  #OSX XCODE OLD
+  - os: osx
+    osx_image: xcode8
+    env:
+    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+  #OSX XCODE LAST
+  - os: osx
+    osx_image: xcode8
+    env:
+    - MATRIX_EVAL="brew update && brew install gcc && CC=gcc-7 && CXX=g++-7"
+  #Linux Clang OLD
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-precise-3.6
+        packages:
+        - clang-3.6
+    env:
+    - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+  #Linux Clang Last
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-trusty-5.0
+        packages:
+        - clang-5.0
+    env:
+    - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0
+before_install:
+- eval "${MATRIX_EVAL}"
+notifications:
+  slack:
+    secure: MPF4qMkv80FJ4mQtwxOf12gtEqpP/DPvUjV7oVZFnAG9Jt2X5QN+uDBVxOqBiO2AYULWL4j1Lx1T/9mRMY/LY1I31Wp1cIjoKfBRC2APltb/5pHP0p/yaA7CP9vio2wTpHpq/lv8yGeIWNyoXWmkosK99If5i7Xnf2S6JtYFRIskVvle9RSpzjAL8/NJ+uV5lEOsuWS+Z3ki1U0U5OfPFQW5HIQHz7QrmqUsGb5T3swjnZzSZcbGTTgGuZOFI28swVojTG8n32Z4W/87P7gMMCfDOPahD0dFH5AYFPhWSHCYlSDNjJ49UKfXg4MociQ/78Q+xaGnttyD3AIV32b6aRdMsSBtD9wPI+bdID3yfmMSZXrRESBPCSj0aDj/pOwLxUfoiZuRRwzqlmbz8gFQegDJj5DcB14sbPuIUStAzSGQLRC2rt7wMmMM4HxmgUiCFZTvyjDWtiGzjP3m1DhHYdd8u2di1aA9MDsQrPYNIaB8/GrpMhxU+37as70ynZicqihbdk3rq5odNdiG0KkUr+/xCDvo86haILh6mPZpix40NHQeCKbbt95yS1SkduIjaiF2oP7CDRN+DzyoA5WWsRMJW+eu+jXonclRE0YnbkFYGmhgFJwAWjzaPXTRjH0bzdbyN+Dfes9mY/KUJsElBVXc0bWl0Ulb+fHCCVdabqg=

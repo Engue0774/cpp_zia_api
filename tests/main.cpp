@@ -8,9 +8,11 @@
 ** Last update Wed Nov 15 09:49:27 2017 Enguerrand Allamel
 */
 
+#include <iostream>
 #include "../src/NexusZiaAPI.hpp"
 
 int main(int, char**)
 {
+  std::cout << "RUN MAIN TEST CPP" << std::endl;
   return (0);
 }
