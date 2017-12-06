@@ -8,8 +8,6 @@
 
 Nexus API for cpp_zia
 
-## C
-
 ## Try to build API
 
 ```bash
