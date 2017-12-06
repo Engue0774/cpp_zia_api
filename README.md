@@ -6,7 +6,10 @@
 [![GitHub Pull Request](https://img.shields.io/github/issues-pr/Nexus-Software/cpp_zia_api.svg)](https://github.com/Nexus-Software/cpp_zia_api/issues)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Nexus API for cpp_zia
+Welcome to the Github project of Zia API by Nexus-Software.
+This repository is provided with documentation intended to describe the operation of the API and its modules for the Zia project.
+
+This API has been developed in C++ and is comptatible on Linux, MacOS and Windows.
 
 ## Try to build API
 
