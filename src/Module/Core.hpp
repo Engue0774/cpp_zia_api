@@ -12,10 +12,12 @@
 #define CPP_ZIA_API_MODULECORE_HPP
 
 #include <string>
+#include <memory>
 
 #include "../Config/Config.hpp"
 #include "../Http/HttpData.hpp"
 #include "../Hooks/Hooks.hpp"
+#include "APIServer.hpp"
 
 namespace nexusZiaApi {
 	class IModuleCore
@@ -54,10 +56,21 @@ namespace nexusZiaApi {
 	  virtual void	setName(const std::string & name) = 0;
 
 	  /**
-	   * Get module config
+	   * Get config
 	   * @return const IModuleConfig
 	   */
-	  virtual const IModuleConfig & getModuleConfig(void) = 0;
+	  virtual IModuleConfig & getModuleConfig(void) = 0;
+
+	  /**
+	   * Set API Server
+	   */
+	  virtual void setAPIServer(std::shared_ptr<IAPIServer> apiServer) = 0;
+
+	  /**
+	   * Get API Server
+	   * @return const IModuleConfig
+	   */
+	  virtual IAPIServer & getAPIServer(void) = 0;
 	};
 }
 

@@ -21,7 +21,7 @@ int main(int, char**)
 
   HttpData_fake httpData_fake;
 
-  LogEmailZia::LogEmail logEmail;
+  LogEmailZia::LogEmail & logEmail = LogEmailZia::LogEmail::Instance();
 
 
   logEmail.event_REQUEST_RECEIVER(httpData_fake);
