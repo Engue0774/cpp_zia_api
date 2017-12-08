@@ -1,7 +1,7 @@
 dist: trusty
 language: cpp
 compiler: g++
-script: mkdir build && cd build && cmake .. && cmake --build .
+script: cmake . && cmake --build .
 matrix:
   include:
   #Linux GCC OLD
