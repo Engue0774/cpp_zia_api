@@ -14,12 +14,8 @@
 #include <unordered_map>
 #include <string>
 #include <memory>
+#include <iostream>
 #include "NexusZiaAPI.hpp"
-
-class zia_fake
-{
-
-};
 
 class HttpHeader_fake : public nexusZiaApi::IHttpHeader {
  private:
@@ -54,6 +50,36 @@ class HttpData_fake : public nexusZiaApi::IHttpData {
   virtual const std::string &getBody(void) const;
 };
 
+class logger_fake : public nexusZiaApi::ILogger
+{
+ public:
+  logger_fake();
+
+  virtual ~logger_fake();
+
+  virtual void log(const ILogger::Level &level, const std::string &msg);
+
+  virtual void logDefault(const std::string &msg);
+
+  virtual void logInfo(const std::string &msg);
+
+  virtual void logSuccess(const std::string &msg);
+
+  virtual void logWarning(const std::string &msg);
+
+  virtual void logError(const std::string &msg);
+
+  virtual void logFatalError(const std::string &msg);
+};
+
+class zia_fake
+{
+ private:
+  std::shared_ptr<nexusZiaApi::ILogger>	_logger;
+ public:
+  zia_fake();
+  virtual ~zia_fake();
+};
 
 
 #endif //CPP_ZIA_API_ZIA_FAKE_HH

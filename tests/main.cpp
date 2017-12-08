@@ -17,11 +17,14 @@ int main(int, char**)
 {
   std::cout << "RUN MAIN TEST CPP" << std::endl;
 
+  zia_fake	ziaFake;
+
   HttpData_fake httpData_fake;
 
   LogEmailZia::LogEmail logEmail;
 
 
   logEmail.event_REQUEST_RECEIVER(httpData_fake);
+
   return (0);
 }

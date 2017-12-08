@@ -65,3 +65,93 @@ const std::string &HttpData_fake::getBody(void) const
 {
   return this->_data;
 }
+
+// Zia Fake
+zia_fake::zia_fake()
+{
+  this->_logger = std::make_shared<logger_fake>();
+  this->_logger->logSuccess("Server is run");
+}
+
+zia_fake::~zia_fake()
+{
+}
+
+//Logger
+
+logger_fake::logger_fake()
+{}
+
+logger_fake::~logger_fake()
+{
+
+}
+
+void logger_fake::log(const nexusZiaApi::ILogger::Level &level, const std::string &msg)
+{
+  if (level == nexusZiaApi::ILogger::Level::INFO) {
+      this->logInfo(msg);
+    }
+  else if (level == nexusZiaApi::ILogger::Level::SUCCESS) {
+      this->logSuccess(msg);
+    }
+  else if (level == nexusZiaApi::ILogger::Level::WARNING) {
+      this->logWarning(msg);
+    }
+  else if (level == nexusZiaApi::ILogger::Level::ERROR) {
+      this->logError(msg);
+    }
+  else if (level == nexusZiaApi::ILogger::Level::FATAL_ERROR) {
+      this->logFatalError(msg);
+    }
+  else {
+      this->logDefault(msg);
+    }
+}
+
+void logger_fake::logDefault(const std::string &msg)
+{
+  std::cout << "[ZIA] ";
+  std::cout << msg;
+  std::cout << std::endl;
+}
+
+void logger_fake::logInfo(const std::string &msg)
+{
+  std::cout << "[ZIA] ";
+  std::cout << "[INFO] ";
+  std::cout << msg;
+  std::cout << std::endl;
+}
+
+void logger_fake::logSuccess(const std::string &msg)
+{
+  std::cout << "[ZIA] ";
+  std::cout << "[SUCCESS] ";
+  std::cout << msg;
+  std::cout << std::endl;
+}
+
+void logger_fake::logWarning(const std::string &msg)
+{
+  std::cout << "[ZIA] ";
+  std::cout << "[WARNING] ";
+  std::cout << msg;
+  std::cout << std::endl;
+}
+
+void logger_fake::logError(const std::string &msg)
+{
+  std::cout << "[ZIA] ";
+  std::cout << "[ERROR] ";
+  std::cout << msg;
+  std::cout << std::endl;
+}
+
+void logger_fake::logFatalError(const std::string &msg)
+{
+  std::cout << "[ZIA] ";
+  std::cout << "[FATAL ERROR] ";
+  std::cout << msg;
+  std::cout << std::endl;
+}
