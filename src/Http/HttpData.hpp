@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "HttpHeader.hpp"
 
@@ -23,7 +24,7 @@ class IHttpData {
    * Define header of HTTP data (or message)
    * @param header
    */
-  virtual void setHeader(IHttpHeader header) = 0;
+  virtual void setHeader(std::shared_ptr<IHttpHeader> header) = 0;
 
   /**
    * Get HTTP Header

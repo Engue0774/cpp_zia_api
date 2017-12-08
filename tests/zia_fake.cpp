@@ -41,9 +41,9 @@ HttpData_fake::~HttpData_fake()
 
 }
 
-void HttpData_fake::setHeader(nexusZiaApi::IHttpHeader header)
+void HttpData_fake::setHeader(std::shared_ptr<nexusZiaApi::IHttpHeader> header)
 {
-  *this->_header = header;
+  this->_header = header;
 }
 
 nexusZiaApi::IHttpHeader &HttpData_fake::getHeader(void)

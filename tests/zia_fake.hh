@@ -39,7 +39,7 @@ class HttpData_fake : public nexusZiaApi::IHttpData {
 
   virtual ~HttpData_fake();
 
-  virtual void setHeader(nexusZiaApi::IHttpHeader header);
+  virtual void setHeader(std::shared_ptr<nexusZiaApi::IHttpHeader> header);
 
   virtual nexusZiaApi::IHttpHeader &getHeader(void);
 
