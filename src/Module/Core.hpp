@@ -31,8 +31,6 @@ namespace nexusZiaApi {
 		UP	= 1
 	  };
 
-	  virtual ~IModuleCore() = default;
-
 	  /**
 	   * Start module
 	   */
@@ -60,13 +58,6 @@ namespace nexusZiaApi {
 	   * @return const IModuleConfig
 	   */
 	  virtual const IModuleConfig & getModuleConfig(void) = 0;
-
-	  /**
-	   * Function call if event in the hook subsribe
-	   * @param hooksType Type of hook
-	   * @param data Data http
-	   */
-	  virtual void hooksCall(const IHooks::Types & hooksType, IHttpData & data) = 0;
 	};
 }
 

@@ -1,4 +1,9 @@
 cmake_minimum_required (VERSION 2.6)
-project (cpp_zia_api)
-set(SOURCES tests/main.cpp)
-add_executable(cpp_zia_api ${SOURCES})
+project (nexusZiaApi)
+set (CMAKE_CXX_STANDARD 11)
+include_directories(src/)
+
+set(SOURCE_FILES tests/main.cpp tests/zia_fake.cpp examples/modules/LogEmail/LogEmail.cpp)
+
+set(SOURCES ${SOURCE_FILES})
+add_executable(nexusZiaApi ${SOURCES})

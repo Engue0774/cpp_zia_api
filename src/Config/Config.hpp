@@ -31,8 +31,6 @@ namespace nexusZiaApi {
 		ERROR			= 3
 	  };
 
-	  virtual ~IModuleConfig() = default;
-
 	  /**
 	   * Init config of module
 	   * Default value of each key, etc

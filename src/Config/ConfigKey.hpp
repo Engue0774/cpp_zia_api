@@ -21,8 +21,6 @@ namespace nexusZiaApi {
 		SCOPE	= 1
 	  };
 
-	  virtual ~IConfigKey() = default;
-
 	  /**
 	   * Set type of config key
 	   * @param type

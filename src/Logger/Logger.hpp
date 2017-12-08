@@ -28,8 +28,6 @@ class ILogger {
 	FATAL_ERROR = 5
   };
 
-  virtual ~ILogger() = default;
-
   /**
    * Log message
    * @param level Type of log

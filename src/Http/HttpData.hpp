@@ -19,26 +19,24 @@
 namespace nexusZiaApi {
 class IHttpData {
  public:
-  virtual ~IHttpData() = default;
-
   /**
    * Define header of HTTP data (or message)
    * @param header
    */
-  virtual void setHeader(const IHttpHeader & header) const;
+  virtual void setHeader(IHttpHeader header) = 0;
 
   /**
    * Get HTTP Header
    * @attention This functions allow edit of reference
    * @return
    */
-  virtual IHttpHeader & getHeader(void);
+  virtual IHttpHeader & getHeader(void) = 0;
 
   /**
    * Get HTTP Header
    * @return
    */
-  virtual const IHttpHeader & getHeader(void) const;
+  virtual const IHttpHeader & getHeader(void) const = 0;
 
   /**
    * Set the body of HTTP Data

@@ -16,8 +16,6 @@
 namespace nexusZiaApi {
 class IHttpHeader {
  public:
-  virtual ~IHttpHeader() = default;
-
   /**
    * Set key of header HTTP
    * @param key

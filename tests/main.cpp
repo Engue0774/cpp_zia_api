@@ -10,9 +10,18 @@
 
 #include <iostream>
 #include "../src/NexusZiaAPI.hpp"
+#include "../examples/modules/LogEmail/LogEmail.hpp"
+#include "zia_fake.hh"
 
 int main(int, char**)
 {
   std::cout << "RUN MAIN TEST CPP" << std::endl;
+
+  HttpData_fake httpData_fake;
+
+  LogEmailZia::LogEmail logEmail;
+
+
+  logEmail.event_REQUEST_RECEIVER(httpData_fake);
   return (0);
 }
