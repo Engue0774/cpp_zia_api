@@ -12,7 +12,7 @@
 #define CPP_ZIA_API_HOOKS_HPP
 
 #include <list>
-#include <string>
+#include <vector>
 
 namespace nexusZiaApi {
 class IHooks {
