@@ -17,11 +17,17 @@ int main(int, char**)
 {
   std::cout << "RUN MAIN TEST CPP" << std::endl;
 
+  // Server ZIA
   zia_fake	ziaFake;
 
-  HttpData_fake httpData_fake;
 
+  // Modules
   LogEmailZia::LogEmail & logEmail = LogEmailZia::LogEmail::Instance();
+  logEmail.setAPIServer(ziaFake.getAPIServer());
+
+
+  // Fake data
+  HttpData_fake httpData_fake;
 
 
   logEmail.event_REQUEST_RECEIVER(httpData_fake);

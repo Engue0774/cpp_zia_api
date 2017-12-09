@@ -71,10 +71,19 @@ zia_fake::zia_fake()
 {
   this->_logger = std::make_shared<logger_fake>();
   this->_logger->logSuccess("Server is run");
+
+  this->_hooks = std::make_shared<hook_fake>();
+
+  this->_apiServer = std::make_shared<apiServer_fake>(this->_logger, this->_hooks);
 }
 
 zia_fake::~zia_fake()
 {
+}
+
+std::shared_ptr<nexusZiaApi::IAPIServer> & zia_fake::getAPIServer(void)
+{
+  return this->_apiServer;
 }
 
 //Logger
@@ -154,4 +163,66 @@ void logger_fake::logFatalError(const std::string &msg)
   std::cout << "[FATAL ERROR] ";
   std::cout << msg;
   std::cout << std::endl;
+}
+
+// APIServer
+apiServer_fake::apiServer_fake(std::shared_ptr<nexusZiaApi::ILogger> logger, std::shared_ptr<nexusZiaApi::IHooks> hooks)
+{
+  this->_logger = logger;
+  this->_hooks = hooks;
+}
+
+apiServer_fake::~apiServer_fake()
+{
+
+}
+
+nexusZiaApi::IHooks &apiServer_fake::getHooks(void)
+{
+  return *this->_hooks;
+}
+
+const nexusZiaApi::IHooks &apiServer_fake::getHooks(void) const
+{
+  return *this->_hooks;
+}
+
+nexusZiaApi::ILogger &apiServer_fake::getLogger(void)
+{
+  return *this->_logger;
+}
+
+const nexusZiaApi::ILogger &apiServer_fake::getLogger(void) const
+{
+  return *this->_logger;
+}
+
+// Hooks
+
+hook_fake::hook_fake():
+	_types({nexusZiaApi::IHooks::Types::REQUEST_RECEIVER})
+{
+}
+
+hook_fake::~hook_fake()
+{
+
+}
+
+const std::list<nexusZiaApi::IHooks::Types> &hook_fake::getAllHooks(void) const
+{
+  return this->_types;
+}
+
+const std::list<nexusZiaApi::IHooks::Types> &hook_fake::getHooksForModule(const std::string &name) const
+{
+  return this->_types;
+}
+
+void hook_fake::subscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
+{
+}
+
+void hook_fake::unSubscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
+{
 }

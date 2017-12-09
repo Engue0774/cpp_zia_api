@@ -75,10 +75,49 @@ class logger_fake : public nexusZiaApi::ILogger
 class zia_fake
 {
  private:
-  std::shared_ptr<nexusZiaApi::ILogger>	_logger;
+  std::shared_ptr<nexusZiaApi::ILogger>		_logger;
+  std::shared_ptr<nexusZiaApi::IHooks>		_hooks;
+  std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
  public:
   zia_fake();
   virtual ~zia_fake();
+
+  std::shared_ptr<nexusZiaApi::IAPIServer> & getAPIServer();
+};
+
+class apiServer_fake : public nexusZiaApi::IAPIServer
+{
+ private:
+  std::shared_ptr<nexusZiaApi::ILogger>	_logger;
+  std::shared_ptr<nexusZiaApi::IHooks>	_hooks;
+ public:
+  apiServer_fake(std::shared_ptr<nexusZiaApi::ILogger>, std::shared_ptr<nexusZiaApi::IHooks>);
+  virtual ~apiServer_fake();
+
+  virtual nexusZiaApi::IHooks &getHooks(void);
+
+  virtual const nexusZiaApi::IHooks &getHooks(void) const;
+
+  virtual nexusZiaApi::ILogger &getLogger(void);
+
+  virtual const nexusZiaApi::ILogger &getLogger(void) const;
+};
+
+class hook_fake : public nexusZiaApi::IHooks {
+ private:
+  std::list<nexusZiaApi::IHooks::Types>	_types;
+ public:
+  hook_fake();
+
+  virtual ~hook_fake();
+
+  virtual const std::list<Types> &getAllHooks(void) const;
+
+  virtual const std::list<Types> &getHooksForModule(const std::string &name) const;
+
+  virtual void subscribe(const Types &type, const std::string &name);
+
+  virtual void unSubscribe(const Types &type, const std::string &name);
 };
 
 

@@ -17,12 +17,12 @@ LogEmailZia::LogEmail&  LogEmailZia::LogEmail::Instance()
   return LogEmailZia::LogEmail::_instance;
 }
 
-LogEmailZia::LogEmail::~LogEmail()
+LogEmailZia::LogEmail::LogEmail()
 {
   std::cout << "LogEmail CTOR" << std::endl;
 }
 
-LogEmailZia::LogEmail::LogEmail()
+LogEmailZia::LogEmail::~LogEmail()
 {
   std::cout << "LogEmail DTOR" << std::endl;
 }
@@ -31,7 +31,7 @@ nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_REQUEST_RECEIVER(n
 {
   auto& logEmail = LogEmailZia::LogEmail::Instance();
 
-  logEmail._apiServer.get()->getLogger().logInfo("Event REQUEST_RECEIVER");
+  logEmail._apiServer.get()->getLogger().logInfo("LOGEMAIL: Event REQUEST_RECEIVER");
   return nexusZiaApi::IHooks::ReturnEvent::SUCCESS;
 }
 
