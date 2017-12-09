@@ -100,6 +100,13 @@ void zia_fake::loadMyFakeModule()
   this->_modulesLists.at("LogEmail").start();
 }
 
+void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type, nexusZiaApi::IHttpData & httpData)
+{
+  for (auto moduleIt : this->_hooks->getModuleRegisterForType(type)) {
+      this->_modulesLists.at(moduleIt).reload();
+  }
+}
+
 //Logger
 
 logger_fake::logger_fake()
@@ -213,9 +220,9 @@ const nexusZiaApi::ILogger &apiServer_fake::getLogger(void) const
 
 // Hooks
 
-hook_fake::hook_fake():
-	_types({nexusZiaApi::IHooks::Types::REQUEST_RECEIVER})
+hook_fake::hook_fake()
 {
+  this->_modulesRegister.emplace_back(std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, {}));
 }
 
 hook_fake::~hook_fake()
@@ -223,20 +230,41 @@ hook_fake::~hook_fake()
 
 }
 
-const std::list<nexusZiaApi::IHooks::Types> &hook_fake::getAllHooks(void) const
+const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> &hook_fake::getAllHooksRegister(void) const
 {
-  return this->_types;
+  return this->_modulesRegister;
 }
 
-const std::list<nexusZiaApi::IHooks::Types> &hook_fake::getHooksForModule(const std::string &name) const
+
+const std::vector<std::string> &hook_fake::getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const
 {
-  return this->_types;
+  size_t i = 0;
+  for (auto it : this->_modulesRegister) {
+    if (it.first == type)
+      return (this->_modulesRegister.at(i).second);
+  }
+  throw std::exception();
 }
 
 void hook_fake::subscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
 {
+  size_t i = 0;
+  for (auto it : this->_modulesRegister) {
+      if (it.first == type)
+	this->_modulesRegister.at(i).second.emplace_back(name);
+    }
 }
 
 void hook_fake::unSubscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
 {
+  for (auto typeIt : this->_modulesRegister) {
+      if (typeIt.first == type) {
+	  size_t i = 0;
+	  for (auto moduleIt : typeIt.second) {
+	      if (moduleIt == name)
+		typeIt.second.erase(typeIt.second.begin() + i);
+	      i++;
+	    }
+	}
+    }
 }

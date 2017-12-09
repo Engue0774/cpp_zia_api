@@ -91,6 +91,7 @@ class zia_fake
   std::shared_ptr<nexusZiaApi::IAPIServer> & getAPIServer();
 
   void	loadMyFakeModule();
+  void  triggerFakeEventHttp(nexusZiaApi::IHooks::Types type, nexusZiaApi::IHttpData &);
 };
 
 //
@@ -117,16 +118,15 @@ class apiServer_fake : public nexusZiaApi::IAPIServer
 
 class hook_fake : public nexusZiaApi::IHooks {
  private:
-  std::list<nexusZiaApi::IHooks::Types>								_types;
-  //std::unordered_map<nexusZiaApi::IHooks::Types, std::shared_ptr<nexusZiaApi::IModuleCore>>	_modulesRegister;
+  std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>>	_modulesRegister;
  public:
   hook_fake();
 
   virtual ~hook_fake();
 
-  virtual const std::list<Types> &getAllHooks(void) const;
+  virtual const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> &getAllHooksRegister(void) const;
 
-  virtual const std::list<Types> &getHooksForModule(const std::string &name) const;
+  virtual const std::vector<std::string> & getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const;
 
   virtual void subscribe(const Types &type, const std::string &name);
 

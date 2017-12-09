@@ -37,11 +37,17 @@ nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_REQUEST_RECEIVER(n
 
 void LogEmailZia::LogEmail::start(void)
 {
+  // Subscribe Hooks
+  this->_apiServer->getHooks().subscribe(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, "LogEmail");
+
   this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is start");
 }
 
 void LogEmailZia::LogEmail::stop(void)
 {
+  // UnSubscibe Hooks
+  this->_apiServer->getHooks().unSubscribe(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, "LogEmail");
+
   this->_apiServer->getLogger().logInfo("[LOG EMAIL] Module is stop");
 }
 

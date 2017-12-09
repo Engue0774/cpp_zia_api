@@ -20,20 +20,12 @@ int main(int, char**)
   // Server ZIA
   zia_fake	ziaFake;
 
-
-
-  // Modules
+  // My loading of modules
   ziaFake.loadMyFakeModule();
 
-  //LogEmailZia::LogEmail & logEmail = LogEmailZia::LogEmail::Instance();
-  //logEmail.setAPIServer(ziaFake.getAPIServer());
-
-
-  // Fake data
+  // Trigger fake event in my Zia
   HttpData_fake httpData_fake;
 
-
-  //logEmail.event_REQUEST_RECEIVER(httpData_fake);
-
+  ziaFake.triggerFakeEventHttp(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, httpData_fake);
   return (0);
 }

@@ -37,17 +37,17 @@ class IHooks {
   };
 
   /**
-   * Get list of hooks
+   * Get list of hooks Register
    * @return
    */
-  virtual const std::list<Types> & getAllHooks(void) const = 0;
+  virtual const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> & getAllHooksRegister(void) const = 0;
 
   /**
-   * Get hooks register for module (by name)
+   * Get module register for type
    * @param name Module name
    * @return
    */
-  virtual const std::list<Types> & getHooksForModule(const std::string & name) const = 0;
+  virtual const std::vector<std::string> & getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const = 0;
 
   /**
    * Add hook register
