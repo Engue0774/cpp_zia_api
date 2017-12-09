@@ -60,6 +60,7 @@ nexusZiaApi::IModuleConfig &LogEmailZia::LogEmail::getModuleConfig(void)
 void LogEmailZia::LogEmail::setAPIServer(std::shared_ptr<nexusZiaApi::IAPIServer> apiServer)
 {
   this->_apiServer = apiServer;
+  this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is load");
 }
 
 nexusZiaApi::IAPIServer &LogEmailZia::LogEmail::getAPIServer(void)

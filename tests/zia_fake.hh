@@ -17,6 +17,8 @@
 #include <iostream>
 #include "NexusZiaAPI.hpp"
 
+#include "../examples/modules/LogEmail/LogEmail.hpp"
+
 class HttpHeader_fake : public nexusZiaApi::IHttpHeader {
  private:
   std::unordered_map<std::string, std::string>	_data;
@@ -72,18 +74,26 @@ class logger_fake : public nexusZiaApi::ILogger
   virtual void logFatalError(const std::string &msg);
 };
 
+//
+
 class zia_fake
 {
  private:
   std::shared_ptr<nexusZiaApi::ILogger>		_logger;
   std::shared_ptr<nexusZiaApi::IHooks>		_hooks;
   std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
+
+  std::unordered_map<std::string, nexusZiaApi::IModuleCore &>	_modulesLists;
  public:
   zia_fake();
   virtual ~zia_fake();
 
   std::shared_ptr<nexusZiaApi::IAPIServer> & getAPIServer();
+
+  void	loadMyFakeModule();
 };
+
+//
 
 class apiServer_fake : public nexusZiaApi::IAPIServer
 {
@@ -103,9 +113,12 @@ class apiServer_fake : public nexusZiaApi::IAPIServer
   virtual const nexusZiaApi::ILogger &getLogger(void) const;
 };
 
+//
+
 class hook_fake : public nexusZiaApi::IHooks {
  private:
-  std::list<nexusZiaApi::IHooks::Types>	_types;
+  std::list<nexusZiaApi::IHooks::Types>								_types;
+  //std::unordered_map<nexusZiaApi::IHooks::Types, std::shared_ptr<nexusZiaApi::IModuleCore>>	_modulesRegister;
  public:
   hook_fake();
 

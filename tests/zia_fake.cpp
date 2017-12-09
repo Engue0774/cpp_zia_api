@@ -86,6 +86,14 @@ std::shared_ptr<nexusZiaApi::IAPIServer> & zia_fake::getAPIServer(void)
   return this->_apiServer;
 }
 
+void zia_fake::loadMyFakeModule()
+{
+  auto &logEmail = LogEmailZia::LogEmail::Instance();
+
+  logEmail.setAPIServer(this->_apiServer);
+  this->_modulesLists.insert({"LogEmail",logEmail});
+}
+
 //Logger
 
 logger_fake::logger_fake()

@@ -21,16 +21,19 @@ int main(int, char**)
   zia_fake	ziaFake;
 
 
+
   // Modules
-  LogEmailZia::LogEmail & logEmail = LogEmailZia::LogEmail::Instance();
-  logEmail.setAPIServer(ziaFake.getAPIServer());
+  ziaFake.loadMyFakeModule();
+
+  //LogEmailZia::LogEmail & logEmail = LogEmailZia::LogEmail::Instance();
+  //logEmail.setAPIServer(ziaFake.getAPIServer());
 
 
   // Fake data
   HttpData_fake httpData_fake;
 
 
-  logEmail.event_REQUEST_RECEIVER(httpData_fake);
+  //logEmail.event_REQUEST_RECEIVER(httpData_fake);
 
   return (0);
 }
