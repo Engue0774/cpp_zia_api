@@ -79,6 +79,11 @@ zia_fake::zia_fake()
 
 zia_fake::~zia_fake()
 {
+  this->_logger->logInfo("Server stoping ...");
+  for (auto it : this->_modulesLists) {
+    it.second.stop();
+  }
+  this->_logger->logInfo("Goodbye");
 }
 
 std::shared_ptr<nexusZiaApi::IAPIServer> & zia_fake::getAPIServer(void)
@@ -92,6 +97,7 @@ void zia_fake::loadMyFakeModule()
 
   logEmail.setAPIServer(this->_apiServer);
   this->_modulesLists.insert({"LogEmail",logEmail});
+  this->_modulesLists.at("LogEmail").start();
 }
 
 //Logger

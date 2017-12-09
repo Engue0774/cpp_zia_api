@@ -37,14 +37,17 @@ nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_REQUEST_RECEIVER(n
 
 void LogEmailZia::LogEmail::start(void)
 {
+  this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is start");
 }
 
 void LogEmailZia::LogEmail::stop(void)
 {
+  this->_apiServer->getLogger().logInfo("[LOG EMAIL] Module is stop");
 }
 
 void LogEmailZia::LogEmail::reload(void)
 {
+  this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is reload");
 }
 
 void LogEmailZia::LogEmail::setName(const std::string &name)
@@ -60,7 +63,6 @@ nexusZiaApi::IModuleConfig &LogEmailZia::LogEmail::getModuleConfig(void)
 void LogEmailZia::LogEmail::setAPIServer(std::shared_ptr<nexusZiaApi::IAPIServer> apiServer)
 {
   this->_apiServer = apiServer;
-  this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is load");
 }
 
 nexusZiaApi::IAPIServer &LogEmailZia::LogEmail::getAPIServer(void)
