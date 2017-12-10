@@ -3,7 +3,8 @@ project (nexusZiaApi)
 set (CMAKE_CXX_STANDARD 11)
 include_directories(src/)
 
-set(SOURCE_FILES tests/main.cpp tests/zia_fake.cpp examples/modules/LogEmail/LogEmail.cpp)
+set(SOURCE_FILES tests/main.cpp tests/zia_fake.cpp)
 
 set(SOURCES ${SOURCE_FILES})
 add_executable(nexusZiaApi ${SOURCES})
+target_link_libraries(nexusZiaApi dl)
