@@ -10,28 +10,26 @@
 
 #include "LogEmail.hpp"
 
-LogEmailZia::LogEmail LogEmailZia::LogEmail::_instance = LogEmailZia::LogEmail();
+std::shared_ptr<LogEmailZia::LogEmail> LogEmailZia::LogEmail::_instance = std::make_shared<LogEmailZia::LogEmail>(LogEmailZia::LogEmail());
 
-LogEmailZia::LogEmail&  LogEmailZia::LogEmail::Instance()
+std::shared_ptr<LogEmailZia::LogEmail>  LogEmailZia::LogEmail::Instance()
 {
   return LogEmailZia::LogEmail::_instance;
 }
 
 LogEmailZia::LogEmail::LogEmail()
 {
-  std::cout << "LogEmail CTOR" << std::endl;
 }
 
 LogEmailZia::LogEmail::~LogEmail()
 {
-  std::cout << "LogEmail DTOR" << std::endl;
 }
 
 nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_REQUEST_RECEIVER(nexusZiaApi::IHttpData & data)
 {
-  auto& logEmail = LogEmailZia::LogEmail::Instance();
+  auto logEmail = LogEmailZia::LogEmail::Instance();
 
-  logEmail._apiServer.get()->getLogger().logInfo("LOGEMAIL: Event REQUEST_RECEIVER");
+  logEmail->_apiServer.get()->getLogger().logInfo("LOGEMAIL: Event REQUEST_RECEIVER");
   return nexusZiaApi::IHooks::ReturnEvent::SUCCESS;
 }
 
@@ -76,4 +74,15 @@ nexusZiaApi::IAPIServer &LogEmailZia::LogEmail::getAPIServer(void)
   return *this->_apiServer;
 }
 
+extern "C"
+{
+	LogEmailZia::LogEmail* CObject()
+	{
+		return (LogEmailZia::LogEmail::Instance().get());
+	}
 
+	void DObject(LogEmailZia::LogEmail* obj)
+	{
+    LogEmailZia::LogEmail::resetInstance();
+	}
+}

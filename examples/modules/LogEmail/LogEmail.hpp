@@ -20,17 +20,19 @@ namespace LogEmailZia {
   class LogEmail : public nexusZiaApi::IModuleCore
   {
    private:
-    static LogEmailZia::LogEmail						_instance;
+    static std::shared_ptr<LogEmailZia::LogEmail>						_instance;
 
    public:
-    static LogEmailZia::LogEmail& 						Instance();
+    static std::shared_ptr<LogEmailZia::LogEmail> 						Instance();
+    static void resetInstance();
 
-   private:
+  private:
     std::shared_ptr<nexusZiaApi::IModuleConfig>	_moduleConfig;
     std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
 
-   private:
+  private:
     LogEmail();
+  public:
     virtual ~LogEmail();
 
    public:
