@@ -11,6 +11,11 @@ This repository is provided with documentation intended to describe the operatio
 
 This API has been developed in C++ and is comptatible on Linux, MacOS and Windows.
 
+## Dependencies
+
+- C++ 11 Compiler
+- CMake
+
 ## Try to build API
 
 ```bash
