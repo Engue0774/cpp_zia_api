@@ -15,6 +15,7 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include "DLLoader.hpp"
 #include "NexusZiaAPI.hpp"
 
 #include "../examples/modules/LogEmail/LogEmail.hpp"
@@ -82,8 +83,9 @@ class zia_fake
   std::shared_ptr<nexusZiaApi::ILogger>		_logger;
   std::shared_ptr<nexusZiaApi::IHooks>		_hooks;
   std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
+  DLLoader                   _loader;
 
-  std::unordered_map<std::string, nexusZiaApi::IModuleCore &>	_modulesLists;
+  std::unordered_map<std::string, nexusZiaApi::IModuleCore*>	_modulesLists;
  public:
   zia_fake();
   virtual ~zia_fake();

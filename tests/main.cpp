@@ -10,7 +10,6 @@
 
 #include <iostream>
 #include "../src/NexusZiaAPI.hpp"
-#include "../examples/modules/LogEmail/LogEmail.hpp"
 #include "zia_fake.hh"
 
 int main(int, char**)

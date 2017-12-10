@@ -68,11 +68,14 @@ const std::string &HttpData_fake::getBody(void) const
 
 // Zia Fake
 zia_fake::zia_fake()
+:
+  _loader("ModuleCore Loader", true)
 {
   this->_logger = std::make_shared<logger_fake>();
   this->_logger->logSuccess("Server is run");
 
   this->_hooks = std::make_shared<hook_fake>();
+
 
   this->_apiServer = std::make_shared<apiServer_fake>(this->_logger, this->_hooks);
 }
@@ -81,7 +84,7 @@ zia_fake::~zia_fake()
 {
   this->_logger->logInfo("Server stoping ...");
   for (auto it : this->_modulesLists) {
-    it.second.stop();
+    it.second->stop();
   }
   this->_logger->logInfo("Goodbye");
 }
@@ -93,17 +96,21 @@ std::shared_ptr<nexusZiaApi::IAPIServer> & zia_fake::getAPIServer(void)
 
 void zia_fake::loadMyFakeModule()
 {
-  auto &logEmail = LogEmailZia::LogEmail::Instance();
+  std::string logEmailLibPath = "../examples/modules/LogEmail/lib/libLogEmail.so";
+  this->_loader.addLib(logEmailLibPath);
+  this->_loader.dump(); 
 
-  logEmail.setAPIServer(this->_apiServer);
-  this->_modulesLists.insert({"LogEmail",logEmail});
-  this->_modulesLists.at("LogEmail").start();
+  auto logEmail = _loader.getInstance(logEmailLibPath);
+  
+  logEmail->setAPIServer(this->_apiServer);
+  this->_modulesLists.insert({"LogEmail", logEmail});
+  this->_modulesLists.at("LogEmail")->start();
 }
 
 void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type, nexusZiaApi::IHttpData & httpData)
 {
   for (auto moduleIt : this->_hooks->getModuleRegisterForType(type)) {
-      this->_modulesLists.at(moduleIt).reload();
+      this->_modulesLists.at(moduleIt)->reload();
   }
 }
 
