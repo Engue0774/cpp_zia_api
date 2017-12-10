@@ -15,10 +15,11 @@
 #include <string>
 #include <memory>
 #include <iostream>
-#include "DLLoader.hpp"
 #include "NexusZiaAPI.hpp"
 
-#include "../examples/modules/LogEmail/LogEmail.hpp"
+#ifdef __linux__
+#include "DLLoader.hpp"
+#endif
 
 class HttpHeader_fake : public nexusZiaApi::IHttpHeader {
  private:
@@ -83,7 +84,9 @@ class zia_fake
   std::shared_ptr<nexusZiaApi::ILogger>		_logger;
   std::shared_ptr<nexusZiaApi::IHooks>		_hooks;
   std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
+	#ifdef __linux__
   DLLoader                   _loader;
+  	#endif
 
   std::unordered_map<std::string, nexusZiaApi::IModuleCore*>	_modulesLists;
  public:

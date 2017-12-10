@@ -68,8 +68,10 @@ const std::string &HttpData_fake::getBody(void) const
 
 // Zia Fake
 zia_fake::zia_fake()
+  #ifdef __linux__
 :
   _loader("ModuleCore Loader", true)
+  #endif
 {
   this->_logger = std::make_shared<logger_fake>();
   this->_logger->logSuccess("Server is run");
@@ -96,6 +98,7 @@ std::shared_ptr<nexusZiaApi::IAPIServer> & zia_fake::getAPIServer(void)
 
 void zia_fake::loadMyFakeModule()
 {
+	#ifdef __linux__
   std::string logEmailLibPath = "../examples/modules/LogEmail/lib/libLogEmail.so";
   this->_loader.addLib(logEmailLibPath);
   this->_loader.dump(); 
@@ -105,6 +108,9 @@ void zia_fake::loadMyFakeModule()
   logEmail->setAPIServer(this->_apiServer);
   this->_modulesLists.insert({"LogEmail", logEmail});
   this->_modulesLists.at("LogEmail")->start();
+	#else
+  this->_logger->logWarning("Not loader for module on Windows / MacOs in this example.");
+	#endif
 }
 
 void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type, nexusZiaApi::IHttpData & httpData)
