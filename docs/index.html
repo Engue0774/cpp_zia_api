@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Zia API - Nexus</title>
+    <title>NexusZiaAPI - API pour le projet cpp_zia d'Epitech</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -219,124 +219,326 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#logger" class="toc-h1 toc-link" data-title="Logger">Logger</a>
+            <a href="#imodulecore" class="toc-h1 toc-link" data-title="IModuleCore">IModuleCore</a>
           </li>
           <li>
-            <a href="#config" class="toc-h1 toc-link" data-title="Config">Config</a>
+            <a href="#iapiserver" class="toc-h1 toc-link" data-title="IAPIServer">IAPIServer</a>
           </li>
           <li>
-            <a href="#hooks" class="toc-h1 toc-link" data-title="Hooks">Hooks</a>
+            <a href="#ilogger" class="toc-h1 toc-link" data-title="ILogger">ILogger</a>
           </li>
           <li>
-            <a href="#core" class="toc-h1 toc-link" data-title="Core">Core</a>
-          </li>
-          <li>
-            <a href="#http-data" class="toc-h1 toc-link" data-title="HTTP Data">HTTP Data</a>
-          </li>
-          <li>
-            <a href="#example-logger-all-event-module" class="toc-h1 toc-link" data-title="Example : Logger all event module">Example : Logger all event module</a>
+            <a href="#ihooks" class="toc-h1 toc-link" data-title="IHooks">IHooks</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href="http://nexus-software.fr/">Nexus Software</a></li>
-            <li><a href="https://github.com/Nexus-Software/cpp_zia_api">GitHub</a></li>
+            <li><a href="https://nexus-software.fr/">Nexus Software</a></li>
+            <li><a href="https://github.com/Nexus-Software/NexusZiaAPI">GitHub</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Hello.</p>
-<h1 id='logger'>Logger</h1>
-<blockquote>
-<p>Logger code</p>
-</blockquote>
-<pre class="highlight cpp"><code><span class="cp">#include &lt;iostream&gt;
-</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Logger"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span>
-</code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Bienvenue sur la documentation de l&#39;API <em>NexusZiaAPI</em> !</p>
 
-<p><code>GET /logger</code></p>
+<p>Cette <strong>documentation</strong> a pour but de décrire les différents <em>éléments</em> de l&#39;API, à savoir :</p>
+
+<table><thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>IModuleCore</em></td>
+<td>Interface décrivant un Module</td>
+</tr>
+<tr>
+<td><em>IAPIServer</em></td>
+<td>Interface passé a chaque Module contenant les accès au ILogger et IHooks du serveur</td>
+</tr>
+<tr>
+<td><em>ILogger</em></td>
+<td>Interface pour <em>log</em> des messages à différents niveaux (Info, etc..)</td>
+</tr>
+<tr>
+<td><em>IHooks</em></td>
+<td>Interface pour être notifié d&#39;un événement</td>
+</tr>
+<tr>
+<td><em>IHttpHeader</em></td>
+<td>Interface pour stocker un header HTTP</td>
+</tr>
+<tr>
+<td><em>IHttpRequest</em></td>
+<td>Interface pour stocker une requête HTTP</td>
+</tr>
+<tr>
+<td><em>IHttpResponse</em></td>
+<td>Interface pour stocker une réponse HTTP</td>
+</tr>
+<tr>
+<td><em>IClientHttp</em></td>
+<td>Interface pour définir un client HTTP</td>
+</tr>
+<tr>
+<td><em>IConfig</em></td>
+<td>Interface pour un fichier de configuration d&#39;un Module</td>
+</tr>
+<tr>
+<td><em>IConfigKey</em></td>
+<td>Interface pour définir un key (Scope ou Value) dans un fichier de configuration</td>
+</tr>
+</tbody></table>
+<h1 id='imodulecore'>IModuleCore</h1>
+<blockquote>
+<p>IModuleCore header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">class</span> <span class="nc">IModuleCore</span>
+    <span class="p">{</span>
+     <span class="k">public</span><span class="o">:</span>
+      <span class="cm">/**
+       * State of module loading
+       * 0: OFF / 1: UP
+       */</span>
+      <span class="k">enum</span> <span class="k">class</span> <span class="nc">State</span>
+      <span class="p">{</span>
+        <span class="n">OFF</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">UP</span>  <span class="o">=</span> <span class="mi">1</span>
+      <span class="p">};</span>
+
+      <span class="k">virtual</span> <span class="o">~</span><span class="n">IModuleCore</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Start module
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">start</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Stop module
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">stop</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Reload module
+       * @details Module is not stop and restart, module is always UP
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">reload</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Set name of module
+       * @param name Name of module
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get module config
+       * @return const IModuleConfig
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">IModuleConfig</span> <span class="o">&amp;</span> <span class="n">getModuleConfig</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Function call if event in the hook subsribe
+       * @param hooksType Type of hook
+       * @param data Data http
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">hooksCall</span><span class="p">(</span><span class="k">const</span> <span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="o">&amp;</span> <span class="n">hooksType</span><span class="p">,</span> <span class="n">IHttpData</span> <span class="o">&amp;</span> <span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre>
+<p>L&#39;interface <em>IModuleCore</em> définit un <strong>ensemble</strong> de fonctions d&#39;un <strong>module</strong>.</p>
 
 <aside class="notice">
-Notice
+Tous les modules doivent implementer toutes les fonctions de l'interface.
 </aside>
-<h1 id='config'>Config</h1>
+<h1 id='iapiserver'>IAPIServer</h1>
 <blockquote>
-<p>ModuleConfig code</p>
+<p>IAPIServer header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="cp">#include &lt;iostream&gt;
-</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ModuleConfig"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span>  <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">IAPIServer</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">IAPIServer</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Get hooks API server
+   * @attention This functions allow edit of reference
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Get hooks API server
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+  * Get logger API server
+  * @attention This functions allow edit of reference
+  * @return
+  */</span>
+  <span class="k">virtual</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+  * Get logger API server
+  * @return
+  */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">}</span>
 </code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<p><code>GET /moduleconfig</code></p>
-
-<aside class="warning">
-Warning
-</aside>
-<h1 id='hooks'>Hooks</h1>
-<blockquote>
-<p>Logger code</p>
-</blockquote>
-<pre class="highlight cpp"><code><span class="cp">#include &lt;iostream&gt;
-</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Logger"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span>
-</code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<p><code>GET /logger</code></p>
+<p>L&#39;interface <em>IAPIServer</em> est passé à chaque <strong>module</strong> pour leur permettre d&#39;avoir accès au <em>Logger</em> (pour <em>log</em> des messages) et aux hooks (pour être <em>notifié</em> en cas <strong>d&#39;événements</strong>).</p>
 
 <aside class="notice">
-Notice
+Cette interface est implémentée par le serveur ZIA et non les modules.
 </aside>
-<h1 id='core'>Core</h1>
+<h1 id='ilogger'>ILogger</h1>
 <blockquote>
-<p>Logger code</p>
+<p>ILogger header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="cp">#include &lt;iostream&gt;
-</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Logger"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">ILogger</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="cm">/**
+   * @class Define level of log
+   */</span>
+  <span class="k">enum</span> <span class="k">class</span> <span class="nc">Level</span> <span class="p">{</span>
+    <span class="n">DEFAULT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">INFO</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">SUCCESS</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">WARNING</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">ERROR</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">FATAL_ERROR</span> <span class="o">=</span> <span class="mi">5</span>
+  <span class="p">};</span>
+
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">ILogger</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Log message
+   * @param level Type of log
+   * @param msg Message
+   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">log</span><span class="p">(</span><span class="k">const</span> <span class="n">ILogger</span><span class="o">::</span><span class="n">Level</span> <span class="o">&amp;</span> <span class="n">level</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Log default message
+   * @param msg
+   */</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logDefault</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="cm">/**
+   * Log info message
+   * @param msg
+   */</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logInfo</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="cm">/**
+   * Log success message
+   * @param msg
+   */</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logSuccess</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="cm">/**
+   * Log warning message
+   * @param msg
+   */</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logWarning</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Log error message
+   * @param msg
+   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logError</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Log fatal error message
+   * @param msg
+   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logFatalError</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">}</span>
 </code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>L&#39;interface <em>ILogger</em> permet de pouvoir <em>log</em> des <strong>informations</strong>.</p>
 
-<p><code>GET /logger</code></p>
-
-<aside class="notice">
-Notice
-</aside>
-<h1 id='http-data'>HTTP Data</h1>
+<table><thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>DEFAULT</em></td>
+<td>Niveau non défini</td>
+</tr>
+<tr>
+<td><em>INFO</em></td>
+<td>Information</td>
+</tr>
+<tr>
+<td><em>SUCCESS</em></td>
+<td>Succès</td>
+</tr>
+<tr>
+<td><em>WARNING</em></td>
+<td>Avertissement</td>
+</tr>
+<tr>
+<td><em>ERROR</em></td>
+<td>Erreur</td>
+</tr>
+<tr>
+<td><em>FATAL_ERROR</em></td>
+<td>Erreur critique</td>
+</tr>
+</tbody></table>
+<h1 id='ihooks'>IHooks</h1>
 <blockquote>
-<p>Logger code</p>
+<p>IHooks header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="cp">#include &lt;iostream&gt;
-</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Logger"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<pre class="highlight cpp"><code>
 </code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>L&#39;interface <em>IHooks</em> permet de pouvoir <em>recevoir</em> des <strong>notifications</strong> lors d&#39;un <strong>événement</strong>.</p>
 
-<p><code>GET /logger</code></p>
-
-<aside class="notice">
-Notice
-</aside>
-<h1 id='example-logger-all-event-module'>Example : Logger all event module</h1>
-<blockquote>
-<p>Logger code</p>
-</blockquote>
-<pre class="highlight cpp"><code><span class="cp">#include &lt;iostream&gt;
-</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Logger"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span>
-</code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<p><code>GET /logger</code></p>
-
-<aside class="notice">
-Notice
-</aside>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>CONNECTION</em></td>
+<td>Connection d&#39;un client</td>
+</tr>
+<tr>
+<td><em>REQUEST_BEFORE_PARSING</em></td>
+<td>Avant le parsing de la requête HTTP</td>
+</tr>
+<tr>
+<td><em>REQUEST_PARSING</em></td>
+<td>Parsing de la requête HTTP</td>
+</tr>
+<tr>
+<td><em>REQUEST_AFTER_PARSING</em></td>
+<td>Après le parsing de la requête HTTP</td>
+</tr>
+<tr>
+<td><em>REPONSE_BEFORE_BUILD</em></td>
+<td>Avant la création de la réponse HTTP</td>
+</tr>
+<tr>
+<td><em>REPONSE_BUILD</em></td>
+<td>Création de la réponse HTTP</td>
+</tr>
+<tr>
+<td><em>REPONSE_AFTER_BUILD</em></td>
+<td>Après la création de la réponse HTTP</td>
+</tr>
+<tr>
+<td><em>REPONSE_SEND</em></td>
+<td>Envoi de la réponse</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
