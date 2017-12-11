@@ -11,9 +11,12 @@
 #ifndef CPP_ZIA_API_HOOKS_HPP
 #define CPP_ZIA_API_HOOKS_HPP
 
-#include <list>
 #include <vector>
+#include <unordered_map>
 #include <string>
+#include <functional>
+#include "../Utils.hpp"
+
 
 namespace nexusZiaApi {
 class IHooks {
@@ -24,13 +27,13 @@ class IHooks {
   enum class Types {
     DEFAULT			= 0,
     CONNECTION			= 1,
-    REQUEST_BEFORE_PARSING,
-    REQUEST_PARSING,
-    REQUEST_AFTER_PARSING,
-    RESPONSE_BEFORE_BUILD,
-    RESPONSE_BUILD,
-    RESPONSE_AFTER_BUILD,
-    RESPONSE_SEND
+    REQUEST_BEFORE_PARSING	= 2,
+    REQUEST_PARSING		= 4,
+    REQUEST_AFTER_PARSING	= 5,
+    RESPONSE_BEFORE_BUILD	= 6,
+    RESPONSE_BUILD		= 7,
+    RESPONSE_AFTER_BUILD	= 8,
+    RESPONSE_SEND		= 9
   };
 
   enum class ReturnEvent {
@@ -42,7 +45,7 @@ class IHooks {
    * Get list of hooks Register
    * @return
    */
-  virtual const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> & getAllHooksRegister(void) const = 0;
+  virtual const std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, EnumClassHash> & getAllHooksRegister(void) const = 0;
 
   /**
    * Get module register for type

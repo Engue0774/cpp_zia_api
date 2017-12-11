@@ -30,4 +30,6 @@
 #include "Module/Core.hpp"
 #include "Module/APIServer.hpp"
 
+#include "Utils.hpp"
+
 #endif //CPP_ZIA_API_NEXUSZIAAPI_HPP
