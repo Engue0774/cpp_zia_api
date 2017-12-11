@@ -79,8 +79,11 @@ void zia_fake::loadMyFakeModule()
 
 void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type)
 {
+
   for (auto moduleIt : this->_hooks->getModuleRegisterForType(type)) {
-      this->_modulesLists.at(moduleIt)->reload();
+      HttpSession httpSession;
+      httpSession.setIP("10.101.10.10");
+      this->_modulesLists.at(moduleIt)->triggerEvent(nexusZiaApi::IHooks::Types::CONNECTION, static_cast<void *>(&httpSession));
   }
 }
 
@@ -244,4 +247,22 @@ void hook_fake::unSubscribe(const nexusZiaApi::IHooks::Types &type, const std::s
 	    }
 	}
     }
+}
+
+//
+
+HttpSession::HttpSession()
+{}
+
+HttpSession::~HttpSession()
+{}
+
+const std::string& HttpSession::getIP() const
+{
+  return this->_ip;
+}
+
+void HttpSession::setIP(std::string ip)
+{
+  this->_ip = ip;
 }

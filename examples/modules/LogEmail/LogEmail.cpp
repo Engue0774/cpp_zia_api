@@ -25,14 +25,6 @@ LogEmailZia::LogEmail::~LogEmail()
 {
 }
 
-nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_CONNECTION()
-{
-  auto logEmail = LogEmailZia::LogEmail::Instance();
-
-  logEmail->_apiServer.get()->getLogger().logInfo("LOGEMAIL: Event CONNECTION");
-  return nexusZiaApi::IHooks::ReturnEvent::SUCCESS;
-}
-
 void LogEmailZia::LogEmail::start(void)
 {
   // Subscribe Hooks
@@ -72,6 +64,17 @@ void LogEmailZia::LogEmail::setAPIServer(std::shared_ptr<nexusZiaApi::IAPIServer
 nexusZiaApi::IAPIServer &LogEmailZia::LogEmail::getAPIServer(void)
 {
   return *this->_apiServer;
+}
+
+nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::triggerEvent(nexusZiaApi::IHooks::Types type, void *data)
+{
+  this->getAPIServer().getLogger().logInfo("[LOG EMAIL] Event func trigger");
+  if (type == nexusZiaApi::IHooks::Types::CONNECTION) {
+      HttpSession * httpSession = static_cast<HttpSession *>(data);
+      this->getAPIServer().getLogger().logInfo("[LOG EMAIL] New connection of " + httpSession->getIP());
+
+    }
+  return nexusZiaApi::IHooks::ReturnEvent::SUCCESS;
 }
 
 extern "C"

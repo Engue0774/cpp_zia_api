@@ -16,6 +16,8 @@
 
 #include "NexusZiaAPI.hpp"
 
+#include "HttpSession.hpp"
+
 namespace LogEmailZia {
   class LogEmail : public nexusZiaApi::IModuleCore
   {
@@ -54,6 +56,8 @@ namespace LogEmailZia {
     virtual void setAPIServer(std::shared_ptr<nexusZiaApi::IAPIServer> apiServer);
 
     virtual nexusZiaApi::IAPIServer &getAPIServer(void);
+
+    virtual nexusZiaApi::IHooks::ReturnEvent triggerEvent(nexusZiaApi::IHooks::Types type, void *data);
   };
 }
 
