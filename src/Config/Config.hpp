@@ -12,7 +12,7 @@
 #define CPP_ZIA_API_MODULECONFIG_HPP
 
 #include <string>
-#include <list>
+#include <vector>
 
 #include "ConfigKey.hpp"
 
@@ -74,7 +74,7 @@ namespace nexusZiaApi {
 	   * @param key
 	   * @return std::list<IConfigkey>
 	   */
-	  virtual const std::list<IConfigKey> & getKey(const std::string & key) const = 0;
+	  virtual const std::vector<IConfigKey> & getKey(const std::string & key) const = 0;
 	};
 }
 
