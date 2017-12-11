@@ -58,6 +58,13 @@ namespace nexusZiaApi {
 	   * @return
 	   */
 	  virtual const std::string & getValue(void) const = 0;
+
+	  /**
+	   * Get value of config key
+	   * @attention Return IConfigKey empty for value
+	   * @return
+	   */
+	  virtual const IConfigKey & getScope(void) const = 0;
 	};
 }
 
