@@ -36,7 +36,7 @@ namespace nexusZiaApi {
     virtual void setMethod(Method method) = 0;
 
     // fixme uri or url ?
-    virtual void setURI(std::string uri) = 0;
+    virtual void setURI(const std::string &uri) = 0;
   };
 }
 
