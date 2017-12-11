@@ -41,7 +41,7 @@ class IHooks {
    * Get list of hooks Register
    * @return
    */
-  virtual const std::unordered_multimap<nexusZiaApi::IHooks::Types, std::vector<std::string>>> & getAllHooksRegister(void) const = 0;
+  virtual const std::unordered_multimap<nexusZiaApi::IHooks::Types, std::vector<std::string>> & getAllHooksRegister(void) const = 0;
 
   /**
    * Get module register for type
