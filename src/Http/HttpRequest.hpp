@@ -31,7 +31,7 @@ namespace nexusZiaApi {
 
     virtual const Method getMethod(void) const = 0;
 
-    virtual const std::string getURI(void) const = 0;
+    virtual const std::string &getURI(void) const = 0;
 
     virtual void setMethod(Method method) = 0;
 
