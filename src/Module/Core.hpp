@@ -71,7 +71,14 @@ namespace nexusZiaApi {
 	   */
 	  virtual IAPIServer & getAPIServer(void) = 0;
 
-	  //Todo Add trigger function for hooks
+
+	  /**
+	   * Function call if event is register for this module and trigger
+	   * @param type Type of event
+	   * @param data Data event
+	   * @return
+	   */
+	  virtual IHooks::ReturnEvent triggerEvent(IHooks::Types type, void *data) = 0;
 	};
 }
 
