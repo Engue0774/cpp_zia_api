@@ -25,10 +25,10 @@ matrix:
     env:
     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
   #OSX
-  - os: osx
-    osx_image: xcode8.3
-    env:
-    - MATRIX_EVAL="brew update && brew install gcc && CC=gcc && CXX=g++"
+ # - os: osx
+ #   osx_image: xcode8.3
+ #  env:
+ #   - MATRIX_EVAL="brew update && brew install gcc && CC=gcc && CXX=g++"
   #Linux Clang OLD
   - os: linux
     addons:
