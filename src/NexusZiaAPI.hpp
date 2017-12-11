@@ -22,8 +22,10 @@
 #include "Config/ConfigKey.hpp"
 #include "Config/Config.hpp"
 
-#include "Http/HttpData.hpp"
 #include "Http/HttpHeader.hpp"
+#include "Http/HttpRequest.hpp"
+#include "Http/HttpResponse.hpp"
+#include "Http/HttpSession.hpp"
 
 #include "Module/Core.hpp"
 #include "Module/APIServer.hpp"

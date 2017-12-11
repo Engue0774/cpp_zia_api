@@ -15,7 +15,6 @@
 #include <memory>
 
 #include "../Config/Config.hpp"
-#include "../Http/HttpData.hpp"
 #include "../Hooks/Hooks.hpp"
 #include "APIServer.hpp"
 
@@ -71,6 +70,8 @@ namespace nexusZiaApi {
 	   * @return const IModuleConfig
 	   */
 	  virtual IAPIServer & getAPIServer(void) = 0;
+
+	  //Todo Add trigger function for hooks
 	};
 }
 

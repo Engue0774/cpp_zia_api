@@ -23,8 +23,7 @@ int main(int, char**)
   ziaFake.loadMyFakeModule();
 
   // Trigger fake event in my Zia
-  HttpData_fake httpData_fake;
 
-  ziaFake.triggerFakeEventHttp(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, httpData_fake);
+  ziaFake.triggerFakeEventHttp(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER);
   return (0);
 }

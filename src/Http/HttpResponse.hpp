@@ -1,5 +1,5 @@
 /*
-** Response.hpp for nexusZiaApi in /home/enguerrand/delivery/nexusZiaApi/Response.hpp
+** HttpResponse.hpp for nexusZiaApi in /home/enguerrand/delivery/nexusZiaApi/Response.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,14 +8,14 @@
 ** Last update Sat Dec 09 19:40:08 2017 Enguerrand Allamel
 */
 
-#ifndef NEXUSZIAAPI_RESPONSE_HPP
-#define NEXUSZIAAPI_RESPONSE_HPP
+#ifndef NEXUSZIAAPI_HTTPRESPONSE_HPP
+#define NEXUSZIAAPI_HTTPRESPONSE_HPP
 
 #include <vector>
 #include "HttpHeader.hpp"
 
 namespace nexusZiaApi {
-  class IResponse : public IHttpHeader {
+  class IHttpResponse : public IHttpHeader {
    public:
     enum class StatusCode {
       UNDEFINED		= 0,
@@ -73,7 +73,7 @@ namespace nexusZiaApi {
 
     virtual const StatusCode getStatusCode(void) const = 0;
 
-    virtual const getReason(void) const = 0;
+    virtual const std::string getReason(void) const = 0;
 
     virtual std::vector<char> & getData(void) = 0;
 
@@ -85,4 +85,4 @@ namespace nexusZiaApi {
   };
 }
 
-#endif //NEXUSZIAAPI_RESPONSE_HPP
+#endif //NEXUSZIAAPI_HTTPRESPONSE_HPP

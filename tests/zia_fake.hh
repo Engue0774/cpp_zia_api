@@ -34,26 +34,6 @@ class HttpHeader_fake : public nexusZiaApi::IHttpHeader {
   virtual const std::string & getKey(const std::string & key);
 };
 
-class HttpData_fake : public nexusZiaApi::IHttpData {
- private:
-  std::shared_ptr<nexusZiaApi::IHttpHeader>	_header;
-  std::string					_data;
- public:
-  HttpData_fake();
-
-  virtual ~HttpData_fake();
-
-  virtual void setHeader(std::shared_ptr<nexusZiaApi::IHttpHeader> header);
-
-  virtual nexusZiaApi::IHttpHeader &getHeader(void);
-
-  virtual const nexusZiaApi::IHttpHeader &getHeader(void) const;
-
-  virtual void setBody(const std::string &data);
-
-  virtual const std::string &getBody(void) const;
-};
-
 class logger_fake : public nexusZiaApi::ILogger
 {
  public:
@@ -96,7 +76,7 @@ class zia_fake
   std::shared_ptr<nexusZiaApi::IAPIServer> & getAPIServer();
 
   void	loadMyFakeModule();
-  void  triggerFakeEventHttp(nexusZiaApi::IHooks::Types type, nexusZiaApi::IHttpData &);
+  void  triggerFakeEventHttp(nexusZiaApi::IHooks::Types type);
 };
 
 //

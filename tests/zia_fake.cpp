@@ -30,42 +30,6 @@ const std::string &HttpHeader_fake::getKey(const std::string &key)
   return this->_data.at(key);
 }
 
-// HttpData
-
-HttpData_fake::HttpData_fake()
-{
-}
-
-HttpData_fake::~HttpData_fake()
-{
-
-}
-
-void HttpData_fake::setHeader(std::shared_ptr<nexusZiaApi::IHttpHeader> header)
-{
-  this->_header = header;
-}
-
-nexusZiaApi::IHttpHeader &HttpData_fake::getHeader(void)
-{
-  return *this->_header;
-}
-
-const nexusZiaApi::IHttpHeader &HttpData_fake::getHeader(void) const
-{
-  return *this->_header;
-}
-
-void HttpData_fake::setBody(const std::string &data)
-{
-  this->_data = data;
-}
-
-const std::string &HttpData_fake::getBody(void) const
-{
-  return this->_data;
-}
-
 // Zia Fake
 zia_fake::zia_fake()
   #ifdef __linux__
@@ -113,7 +77,7 @@ void zia_fake::loadMyFakeModule()
 	#endif
 }
 
-void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type, nexusZiaApi::IHttpData & httpData)
+void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type)
 {
   for (auto moduleIt : this->_hooks->getModuleRegisterForType(type)) {
       this->_modulesLists.at(moduleIt)->reload();
