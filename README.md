@@ -1,5 +1,5 @@
 # NexusZiaApi
-*More informations about us here: [Nexus-Software](https://www.nexus-software.fr)*
+*More informations about us here: [Nexus-Software](https://nexus-software.fr)*
 
 ![CPP](https://img.shields.io/badge/C++-11-blue.svg)
 [![Build Status](https://travis-ci.org/Nexus-Software/NexusZiaApi.svg?branch=master)](https://travis-ci.org/Nexus-Software/NexusZiaApi)
