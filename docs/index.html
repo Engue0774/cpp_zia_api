@@ -222,6 +222,9 @@
             <a href="#imodulecore" class="toc-h1 toc-link" data-title="IModuleCore">IModuleCore</a>
           </li>
           <li>
+            <a href="#iapiserver" class="toc-h1 toc-link" data-title="IAPIServer">IAPIServer</a>
+          </li>
+          <li>
             <a href="#ilogger" class="toc-h1 toc-link" data-title="ILogger">ILogger</a>
           </li>
           <li>
@@ -367,7 +370,49 @@
 </span>    <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
-<p>L&#39;interface <em>IAPIServer</em> est passé à chaque <strong>module</strong> pour leur permettre d&#39;avoir accès au <em>Logger</em> (pour <em>log</em> des messages) et aux hooks (pour être <em>notifié</em> en cas <strong>d&#39;événements</strong>).</p>
+<p>L&#39;interface IModuleCore définit un ensemble de fonctions d&#39;un module.</p>
+
+<aside class="notice">
+Tous les modules doivent implementer toutes les **fonctions** de **l'interface**.
+</aside>
+<h1 id='iapiserver'>IAPIServer</h1>
+<blockquote>
+<p>IAPIServer header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span>  <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">IAPIServer</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">IAPIServer</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Get hooks API server
+   * @attention This functions allow edit of reference
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Get hooks API server
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+  * Get logger API server
+  * @attention This functions allow edit of reference
+  * @return
+  */</span>
+  <span class="k">virtual</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+  * Get logger API server
+  * @return
+  */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IAPIServer</em> est passé à chaque <strong>module</strong> pour leur permettre d&#39;avoir accès au <em>Logger</em> (pour log des messages) et aux <em>hooks</em> (pour être notifié en cas d&#39;événements).</p>
 
 <aside class="notice">
 Cette interface est implémentée par le serveur ZIA et non les modules.
