@@ -25,18 +25,18 @@ LogEmailZia::LogEmail::~LogEmail()
 {
 }
 
-nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_REQUEST_RECEIVER(nexusZiaApi::IHttpData & data)
+nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::event_CONNECTION()
 {
   auto logEmail = LogEmailZia::LogEmail::Instance();
 
-  logEmail->_apiServer.get()->getLogger().logInfo("LOGEMAIL: Event REQUEST_RECEIVER");
+  logEmail->_apiServer.get()->getLogger().logInfo("LOGEMAIL: Event CONNECTION");
   return nexusZiaApi::IHooks::ReturnEvent::SUCCESS;
 }
 
 void LogEmailZia::LogEmail::start(void)
 {
   // Subscribe Hooks
-  this->_apiServer->getHooks().subscribe(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, "LogEmail");
+  this->_apiServer->getHooks().subscribe(nexusZiaApi::IHooks::Types::CONNECTION, "LogEmail");
 
   this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is start");
 }
@@ -44,7 +44,7 @@ void LogEmailZia::LogEmail::start(void)
 void LogEmailZia::LogEmail::stop(void)
 {
   // UnSubscibe Hooks
-  this->_apiServer->getHooks().unSubscribe(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, "LogEmail");
+  this->_apiServer->getHooks().unSubscribe(nexusZiaApi::IHooks::Types::CONNECTION, "LogEmail");
 
   this->_apiServer->getLogger().logInfo("[LOG EMAIL] Module is stop");
 }

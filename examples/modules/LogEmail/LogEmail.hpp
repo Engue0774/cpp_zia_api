@@ -38,7 +38,7 @@ namespace LogEmailZia {
    public:
 
     // Event
-    static nexusZiaApi::IHooks::ReturnEvent event_REQUEST_RECEIVER(nexusZiaApi::IHttpData &);
+    static nexusZiaApi::IHooks::ReturnEvent event_CONNECTION();
 
     // IModuleCore
     virtual void start(void);
