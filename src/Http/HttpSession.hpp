@@ -16,7 +16,7 @@
 namespace nexusZiaApi {
   class IHttpSession{
    public:
-    virtual const &std::string getIP(void) const = 0;
+    virtual const std::string &getIP(void) const = 0;
 
     virtual void setIP(const std::string &ip) = 0;
   };
