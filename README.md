@@ -18,6 +18,22 @@ This API has been developed in C++ and is comptatible on Linux, MacOS and Window
 
 ## Try to build API
 
+### Linux
+```bash
+git clone https://github.com/Nexus-Software/NexusZiaApi.git
+cd NexusZiaApi
+mkdir build
+cd build
+cmake ..
+cmake --build .
+cd ..
+mkdir examples/modules/LogEmail/build
+cd examples/modules/LogEmail/build
+cmake ..
+cmake --build .
+```
+
+### Windows and MacOS
 ```bash
 git clone https://github.com/Nexus-Software/NexusZiaApi.git
 cd NexusZiaApi
