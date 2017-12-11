@@ -12,7 +12,7 @@
 #define CPP_ZIA_API_HOOKS_HPP
 
 #include <vector>
-#include <unordered_multimap>
+#include <unordered_map>
 
 namespace nexusZiaApi {
 class IHooks {
