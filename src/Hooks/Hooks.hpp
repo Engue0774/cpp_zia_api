@@ -11,8 +11,8 @@
 #ifndef CPP_ZIA_API_HOOKS_HPP
 #define CPP_ZIA_API_HOOKS_HPP
 
-#include <list>
 #include <vector>
+#include <unordered_map>
 
 namespace nexusZiaApi {
 class IHooks {
@@ -41,7 +41,7 @@ class IHooks {
    * Get list of hooks Register
    * @return
    */
-  virtual const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> & getAllHooksRegister(void) const = 0;
+  virtual const std::unordered_multimap<nexusZiaApi::IHooks::Types, std::vector<std::string>> & getAllHooksRegister(void) const = 0;
 
   /**
    * Get module register for type

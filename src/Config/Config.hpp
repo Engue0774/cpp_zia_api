@@ -12,7 +12,7 @@
 #define CPP_ZIA_API_MODULECONFIG_HPP
 
 #include <string>
-#include <list>
+#include <vector>
 
 #include "ConfigKey.hpp"
 
@@ -52,7 +52,7 @@ namespace nexusZiaApi {
 	   * In loading, is load, error in config, etc
 	   * @return
 	   */
-	  virtual const State & getState(void) = 0;
+	  virtual const State & getState(void) const = 0;
 
 	  /**
 	   *
@@ -67,14 +67,14 @@ namespace nexusZiaApi {
 	   * @param key
 	   * @return const IConfigKey &
 	   */
-	  virtual const IConfigKey & getKeyOne(const std::string & key) = 0;
+	  virtual const IConfigKey & getKeyOne(const std::string & key) const = 0;
 
 	  /**
 	   * Get list of key in config of module
 	   * @param key
-	   * @return std::list<IConfigkey>
+	   * @return const std::vector<IConfigkey> &
 	   */
-	  virtual const std::list<IConfigKey> & getKey(const std::string & key) = 0;
+	  virtual const std::vector<IConfigKey> & getKey(const std::string & key) const = 0;
 	};
 }
 
