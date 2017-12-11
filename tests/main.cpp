@@ -10,9 +10,20 @@
 
 #include <iostream>
 #include "../src/NexusZiaAPI.hpp"
+#include "zia_fake.hh"
 
 int main(int, char**)
 {
   std::cout << "RUN MAIN TEST CPP" << std::endl;
+
+  // Server ZIA
+  zia_fake	ziaFake;
+
+  // My loading of modules
+  ziaFake.loadMyFakeModule();
+
+  // Trigger fake event in my Zia
+
+  ziaFake.triggerFakeEventHttp(nexusZiaApi::IHooks::Types::CONNECTION);
   return (0);
 }

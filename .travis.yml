@@ -1,7 +1,7 @@
 dist: trusty
 language: cpp
 compiler: g++
-script: cd tests && g++ main.cpp -std=c++11
+script: mkdir build && cd build && cmake .. && cmake --build . ; if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cd .. && mkdir examples/modules/LogEmail/build && cd examples/modules/LogEmail/build && cmake .. && cmake --build . ; fi
 matrix:
   include:
   #Linux GCC OLD

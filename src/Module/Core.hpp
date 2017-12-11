@@ -12,10 +12,11 @@
 #define CPP_ZIA_API_MODULECORE_HPP
 
 #include <string>
+#include <memory>
 
 #include "../Config/Config.hpp"
-#include "../Http/HttpData.hpp"
 #include "../Hooks/Hooks.hpp"
+#include "APIServer.hpp"
 
 namespace nexusZiaApi {
 	class IModuleCore
@@ -30,8 +31,6 @@ namespace nexusZiaApi {
 		OFF	= 0,
 		UP	= 1
 	  };
-
-	  virtual ~IModuleCore() = default;
 
 	  /**
 	   * Start module
@@ -56,17 +55,23 @@ namespace nexusZiaApi {
 	  virtual void	setName(const std::string & name) = 0;
 
 	  /**
-	   * Get module config
+	   * Get config
 	   * @return const IModuleConfig
 	   */
-	  virtual const IModuleConfig & getModuleConfig(void) = 0;
+	  virtual IModuleConfig & getModuleConfig(void) = 0;
 
 	  /**
-	   * Function call if event in the hook subsribe
-	   * @param hooksType Type of hook
-	   * @param data Data http
+	   * Set API Server
 	   */
-	  virtual void hooksCall(const IHooks::Types & hooksType, IHttpData & data) = 0;
+	  virtual void setAPIServer(std::shared_ptr<IAPIServer> apiServer) = 0;
+
+	  /**
+	   * Get API Server
+	   * @return const IModuleConfig
+	   */
+	  virtual IAPIServer & getAPIServer(void) = 0;
+
+	  //Todo Add trigger function for hooks
 	};
 }
 

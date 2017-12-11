@@ -17,8 +17,6 @@
 namespace  nexusZiaApi {
 class IAPIServer {
  public:
-  virtual ~IAPIServer() = default;
-
   /**
    * Get hooks API server
    * @attention This functions allow edit of reference

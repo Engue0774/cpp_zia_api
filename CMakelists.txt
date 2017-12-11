@@ -1,4 +1,0 @@
-cmake_minimum_required (VERSION 2.6)
-project (cpp_zia_api)
-set(SOURCES tests/main.cpp)
-add_executable(cpp_zia_api ${SOURCES})
