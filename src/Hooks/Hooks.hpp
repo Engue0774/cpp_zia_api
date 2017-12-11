@@ -21,14 +21,15 @@ class IHooks {
    * Define type of hook define
    */
   enum class Types {
-	DEFAULT			= 0,
-    	REQUEST_RECEIVER	= 1,
-	REQUEST_BEFORE_PARSING	= 2,
-	REQUEST_AFTER_PARSING	= 3,
-	REQUEST_DONE		= 4,
-	RESPONSE_BEFORE_BUILD	= 5,
-	RESPONSE_POST_BUILD	= 6,
-	RESPONSE_SEND		= 7
+    DEFAULT			= 0,
+    CONNECTION			= 1,
+    REQUEST_BEFORE_PARSING,
+    REQUEST_PARSING,
+    REQUEST_AFTER_PARSING,
+    RESPONSE_BEFORE_BUILD,
+    RESPONSE_BUILD,
+    RESPONSE_AFTER_BUILD,
+    RESPONSE_SEND
   };
 
   enum class ReturnEvent {

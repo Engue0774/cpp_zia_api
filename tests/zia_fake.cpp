@@ -199,7 +199,7 @@ const nexusZiaApi::ILogger &apiServer_fake::getLogger(void) const
 
 hook_fake::hook_fake()
 {
-  this->_modulesRegister.emplace_back(std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>(nexusZiaApi::IHooks::Types::REQUEST_RECEIVER, {}));
+  this->_modulesRegister.emplace_back(std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>(nexusZiaApi::IHooks::Types::CONNECTION, {}));
 }
 
 hook_fake::~hook_fake()
