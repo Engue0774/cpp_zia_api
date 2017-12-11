@@ -222,13 +222,28 @@
             <a href="#imodulecore" class="toc-h1 toc-link" data-title="IModuleCore">IModuleCore</a>
           </li>
           <li>
-            <a href="#iapiserver" class="toc-h1 toc-link" data-title="IAPIServer">IAPIServer</a>
-          </li>
-          <li>
             <a href="#ilogger" class="toc-h1 toc-link" data-title="ILogger">ILogger</a>
           </li>
           <li>
             <a href="#ihooks" class="toc-h1 toc-link" data-title="IHooks">IHooks</a>
+          </li>
+          <li>
+            <a href="#ihttpheader" class="toc-h1 toc-link" data-title="IHttpHeader">IHttpHeader</a>
+          </li>
+          <li>
+            <a href="#ihttprequest" class="toc-h1 toc-link" data-title="IHttpRequest">IHttpRequest</a>
+          </li>
+          <li>
+            <a href="#ihttpresponse" class="toc-h1 toc-link" data-title="IHttpResponse">IHttpResponse</a>
+          </li>
+          <li>
+            <a href="#ihttpsession" class="toc-h1 toc-link" data-title="IHttpSession">IHttpSession</a>
+          </li>
+          <li>
+            <a href="#iconfig" class="toc-h1 toc-link" data-title="IConfig">IConfig</a>
+          </li>
+          <li>
+            <a href="#iconfigkey" class="toc-h1 toc-link" data-title="IConfigKey">IConfigKey</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -279,8 +294,8 @@
 <td>Interface pour stocker une réponse HTTP</td>
 </tr>
 <tr>
-<td><em>IClientHttp</em></td>
-<td>Interface pour définir un client HTTP</td>
+<td><em>IHttpSession</em></td>
+<td>Interface pour définir une session HTTP</td>
 </tr>
 <tr>
 <td><em>IConfig</em></td>
@@ -295,7 +310,8 @@
 <blockquote>
 <p>IModuleCore header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">class</span> <span class="nc">IModuleCore</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">IModuleCore</span>
     <span class="p">{</span>
      <span class="k">public</span><span class="o">:</span>
       <span class="cm">/**
@@ -307,8 +323,6 @@
         <span class="n">OFF</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">UP</span>  <span class="o">=</span> <span class="mi">1</span>
       <span class="p">};</span>
-
-      <span class="k">virtual</span> <span class="o">~</span><span class="n">IModuleCore</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
 
       <span class="cm">/**
        * Start module
@@ -333,58 +347,24 @@
       <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get module config
+       * Get config
        * @return const IModuleConfig
        */</span>
-      <span class="k">virtual</span> <span class="k">const</span> <span class="n">IModuleConfig</span> <span class="o">&amp;</span> <span class="n">getModuleConfig</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">virtual</span> <span class="n">IModuleConfig</span> <span class="o">&amp;</span> <span class="n">getModuleConfig</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Function call if event in the hook subsribe
-       * @param hooksType Type of hook
-       * @param data Data http
+       * Set API Server
        */</span>
-      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">hooksCall</span><span class="p">(</span><span class="k">const</span> <span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="o">&amp;</span> <span class="n">hooksType</span><span class="p">,</span> <span class="n">IHttpData</span> <span class="o">&amp;</span> <span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</code></pre>
-<p>L&#39;interface <em>IModuleCore</em> définit un <strong>ensemble</strong> de fonctions d&#39;un <strong>module</strong>.</p>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setAPIServer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">IAPIServer</span><span class="o">&gt;</span> <span class="n">apiServer</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<aside class="notice">
-Tous les modules doivent implementer toutes les fonctions de l'interface.
-</aside>
-<h1 id='iapiserver'>IAPIServer</h1>
-<blockquote>
-<p>IAPIServer header</p>
-</blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span>  <span class="n">nexusZiaApi</span> <span class="p">{</span>
-<span class="k">class</span> <span class="nc">IAPIServer</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">IAPIServer</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+      <span class="cm">/**
+       * Get API Server
+       * @return const IModuleConfig
+       */</span>
+      <span class="k">virtual</span> <span class="n">IAPIServer</span> <span class="o">&amp;</span> <span class="n">getAPIServer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-  <span class="cm">/**
-   * Get hooks API server
-   * @attention This functions allow edit of reference
-   * @return
-   */</span>
-  <span class="k">virtual</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-  <span class="cm">/**
-   * Get hooks API server
-   * @return
-   */</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-  <span class="cm">/**
-  * Get logger API server
-  * @attention This functions allow edit of reference
-  * @return
-  */</span>
-  <span class="k">virtual</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-  <span class="cm">/**
-  * Get logger API server
-  * @return
-  */</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">};</span>
+      <span class="c1">//Todo Add trigger function for hooks
+</span>    <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
 <p>L&#39;interface <em>IAPIServer</em> est passé à chaque <strong>module</strong> pour leur permettre d&#39;avoir accès au <em>Logger</em> (pour <em>log</em> des messages) et aux hooks (pour être <em>notifié</em> en cas <strong>d&#39;événements</strong>).</p>
@@ -496,7 +476,57 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IHooks header</p>
 </blockquote>
-<pre class="highlight cpp"><code>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">IHooks</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="cm">/**
+   * Define type of hook define
+   */</span>
+  <span class="k">enum</span> <span class="k">class</span> <span class="nc">Types</span> <span class="p">{</span>
+    <span class="n">DEFAULT</span>         <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">CONNECTION</span>          <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">REQUEST_BEFORE_PARSING</span><span class="p">,</span>
+    <span class="n">REQUEST_PARSING</span><span class="p">,</span>
+    <span class="n">REQUEST_AFTER_PARSING</span><span class="p">,</span>
+    <span class="n">RESPONSE_BEFORE_BUILD</span><span class="p">,</span>
+    <span class="n">RESPONSE_BUILD</span><span class="p">,</span>
+    <span class="n">RESPONSE_AFTER_BUILD</span><span class="p">,</span>
+    <span class="n">RESPONSE_SEND</span>
+  <span class="p">};</span>
+
+  <span class="k">enum</span> <span class="k">class</span> <span class="nc">ReturnEvent</span> <span class="p">{</span>
+      <span class="n">SUCCESS</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="n">ERROR</span>     <span class="o">=</span> <span class="mi">1</span>
+  <span class="p">};</span>
+
+  <span class="cm">/**
+   * Get list of hooks Register
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">nexusZiaApi</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;&gt;</span> <span class="o">&amp;</span> <span class="n">getAllHooksRegister</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Get module register for type
+   * @param name Module name
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getModuleRegisterForType</span><span class="p">(</span><span class="k">const</span> <span class="n">nexusZiaApi</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="n">type</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Add hook register
+   * @param type Type hooks
+   * @param name Name of module
+   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">subscribe</span><span class="p">(</span><span class="k">const</span> <span class="n">Types</span> <span class="o">&amp;</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Remove hook register
+   * @param type Type hooks
+   * @param name Name of module
+   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">unSubscribe</span><span class="p">(</span><span class="k">const</span> <span class="n">Types</span> <span class="o">&amp;</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">}</span>
 </code></pre>
 <p>L&#39;interface <em>IHooks</em> permet de pouvoir <em>recevoir</em> des <strong>notifications</strong> lors d&#39;un <strong>événement</strong>.</p>
 
@@ -523,22 +553,295 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <td>Après le parsing de la requête HTTP</td>
 </tr>
 <tr>
-<td><em>REPONSE_BEFORE_BUILD</em></td>
+<td><em>RESPONSE_BEFORE_BUILD</em></td>
 <td>Avant la création de la réponse HTTP</td>
 </tr>
 <tr>
-<td><em>REPONSE_BUILD</em></td>
+<td><em>RESPONSE_BUILD</em></td>
 <td>Création de la réponse HTTP</td>
 </tr>
 <tr>
-<td><em>REPONSE_AFTER_BUILD</em></td>
+<td><em>RESPONSE_AFTER_BUILD</em></td>
 <td>Après la création de la réponse HTTP</td>
 </tr>
 <tr>
-<td><em>REPONSE_SEND</em></td>
+<td><em>RESPONSE_SEND</em></td>
 <td>Envoi de la réponse</td>
 </tr>
 </tbody></table>
+<h1 id='ihttpheader'>IHttpHeader</h1>
+<blockquote>
+<p>IHttpHeader header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">IHttpHeader</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="cm">/**
+   * Set key of header HTTP
+   * @param key
+   * @param value
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/**
+   * Get key of header HTTP
+   * @param key
+   * @return
+   */</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IHttpHeader</em> permet de définir un header <strong>Http</strong>.</p>
+<h1 id='ihttprequest'>IHttpRequest</h1>
+<blockquote>
+<p>IHttpRequest header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">IHttpRequest</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IHttpHeader</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="k">enum</span> <span class="k">class</span> <span class="nc">Method</span> <span class="p">{</span>
+      <span class="n">UNDEFINED</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="n">OPTIONS</span>       <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="n">GET</span><span class="p">,</span>
+      <span class="n">HEAD</span><span class="p">,</span>
+      <span class="n">POST</span><span class="p">,</span>
+      <span class="n">PUT</span><span class="p">,</span>
+      <span class="n">DELETE</span><span class="p">,</span>
+      <span class="n">TRACE</span><span class="p">,</span>
+      <span class="n">CONNECT</span><span class="p">,</span>
+      <span class="n">PATCH</span>
+    <span class="p">};</span>
+
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">Method</span> <span class="n">getMethod</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getURI</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setMethod</span><span class="p">(</span><span class="n">Method</span> <span class="n">method</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setURI</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">uri</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IHttpHeader</em> permet de définir une <strong>requête HTTP</strong>.</p>
+<h1 id='ihttpresponse'>IHttpResponse</h1>
+<blockquote>
+<p>IHttpResponse header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">IHttpResponse</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IHttpHeader</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="k">enum</span> <span class="k">class</span> <span class="nc">StatusCode</span> <span class="p">{</span>
+      <span class="n">UNDEFINED</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+
+      <span class="c1">// Informational
+</span>      <span class="n">Continue</span>              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="n">Switching_Protocols</span>       <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
+
+      <span class="c1">// Success
+</span>      <span class="n">OK</span>                            <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+      <span class="n">Created</span>                       <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
+      <span class="n">Accepted</span>                      <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
+      <span class="n">Non__Authoritative_Information</span>    <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
+      <span class="n">No_Content</span>                    <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
+      <span class="n">Reset_Content</span>                     <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
+      <span class="n">Partial_Content</span>                   <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
+
+      <span class="c1">// Redirection
+</span>      <span class="n">Multiple_Choices</span>          <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+      <span class="n">Moved_Permanently</span>         <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
+      <span class="n">Found</span>             <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
+      <span class="n">See_Other</span>             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
+      <span class="n">Not_Modified</span>          <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
+      <span class="n">Use_Proxy</span>                         <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
+      <span class="n">Temporary_Redirect</span>                <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
+
+      <span class="c1">// Client Error
+</span>      <span class="n">Bad_Request</span>                       <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
+      <span class="n">Unauthorized</span>                  <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
+      <span class="n">Payment_Required</span>              <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
+      <span class="n">Forbidden</span>                     <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
+      <span class="n">Not_Found</span>                     <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
+      <span class="n">Method_Not_Allowed</span>            <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
+      <span class="n">Not_Acceptable</span>            <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
+      <span class="n">Proxy_Authentication_Required</span> <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
+      <span class="n">Request_Time__Out</span>         <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
+      <span class="n">Conflict</span>                      <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
+      <span class="n">Gone</span>                          <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
+      <span class="n">Length_Required</span>                   <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
+      <span class="n">Precondition_Failed</span>               <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
+      <span class="n">Request_Entity_Too_Large</span>          <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
+      <span class="n">Request__URI_Too_Large</span>            <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
+      <span class="n">Unsupported_Media_Type</span>            <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
+      <span class="n">Requested_Range_Not_Satisfiable</span>   <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
+      <span class="n">Expectation_Failed</span>                <span class="o">=</span> <span class="mi">417</span><span class="p">,</span>
+
+      <span class="c1">// Server Error
+</span>      <span class="n">Internal_Server_Error</span>             <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+      <span class="n">Not_Implemented</span>                   <span class="o">=</span> <span class="mi">501</span><span class="p">,</span>
+      <span class="n">Bad_Gateway</span>                       <span class="o">=</span> <span class="mi">502</span><span class="p">,</span>
+      <span class="n">Service_Unavailable</span>               <span class="o">=</span> <span class="mi">503</span><span class="p">,</span>
+      <span class="n">Gateway_Time__Out</span>                 <span class="o">=</span> <span class="mi">504</span><span class="p">,</span>
+      <span class="n">HTTP_Version_Not_Supported</span>        <span class="o">=</span> <span class="mi">505</span>
+    <span class="p">};</span>
+
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">StatusCode</span> <span class="n">getStatusCode</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getReason</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getData</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setStatusCode</span><span class="p">(</span><span class="n">StatusCode</span> <span class="n">statusCode</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setReason</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">reason</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IHttpResponse</em> permet de définir une <strong>réponse HTTP</strong>.</p>
+<h1 id='ihttpsession'>IHttpSession</h1>
+<blockquote>
+<p>IHttpSession header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">IHttpSession</span><span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getIP</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setIP</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ip</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IHttpSession</em> permet de définir une <strong>session HTTP</strong>.</p>
+<h1 id='iconfig'>IConfig</h1>
+<blockquote>
+<p>IConfig header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">IModuleConfig</span>
+    <span class="p">{</span>
+     <span class="k">public</span><span class="o">:</span>
+      <span class="cm">/**
+       * State of config loading
+       */</span>
+      <span class="k">enum</span> <span class="k">class</span> <span class="nc">State</span>
+      <span class="p">{</span>
+        <span class="n">UNLOADED</span>        <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">LOAD_START</span>      <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">LOADED</span>          <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">ERROR</span>           <span class="o">=</span> <span class="mi">3</span>
+      <span class="p">};</span>
+
+      <span class="cm">/**
+       * Init config of module
+       * Default value of each key, etc
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Load config of module
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">load</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Reload config of module
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">reload</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get state of module config
+       * In loading, is load, error in config, etc
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">State</span> <span class="o">&amp;</span> <span class="n">getState</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       *
+       * @param key
+       * @param configKey
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">,</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">configKey</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get key unique in config of module
+       * @param key
+       * @return const IConfigKey &amp;
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">getKeyOne</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get list of key in config of module
+       * @param key
+       * @return std::list&lt;IConfigkey&gt;
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">IConfigKey</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IConfig</em> permet de définir un <strong>fichier de configuration</strong> d&#39;un <strong>module</strong>.</p>
+<h1 id='iconfigkey'>IConfigKey</h1>
+<blockquote>
+<p>IConfigKey header</p>
+</blockquote>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">IConfigKey</span> <span class="p">{</span>
+     <span class="k">public</span><span class="o">:</span>
+      <span class="k">enum</span> <span class="k">class</span> <span class="nc">Type</span> <span class="p">{</span>
+        <span class="n">VALUE</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">SCOPE</span>   <span class="o">=</span> <span class="mi">1</span>
+      <span class="p">};</span>
+
+      <span class="cm">/**
+       * Set type of config key
+       * @param type
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setType</span><span class="p">(</span><span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">type</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get type of config key
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">getType</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Set name of config key
+       * @param type
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get name of config key
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getName</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Set value of config key
+       * @attention Not for scope type
+       * @param type
+       */</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setValue</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get value of config key
+       * @attention Return "" for scope
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getValue</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="cm">/**
+       * Get value of config key
+       * @attention Return IConfigKey empty for value
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">getScope</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p>L&#39;interface <em>IConfigKey</em> permet de définir une <em>clé</em> ou un <em>scope</em> dans un <strong>fichier de configuration</strong>.</p>
 
       </div>
       <div class="dark-box">
