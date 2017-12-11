@@ -682,48 +682,48 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
   <span class="k">class</span> <span class="nc">IHttpResponse</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IHttpHeader</span> <span class="p">{</span>
    <span class="k">public</span><span class="o">:</span>
     <span class="k">enum</span> <span class="k">class</span> <span class="nc">StatusCode</span> <span class="p">{</span>
-      <span class="n">UNDEFINED</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="n">UNDEFINED</span>                         <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 
       <span class="c1">// INFORMATIONAL
-</span>      <span class="n">CONTINUE</span>              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
-      <span class="n">SWITCHING_PROTOCOLS</span>       <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
+</span>      <span class="n">CONTINUE</span>                              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="n">SWITCHING_PROTOCOLS</span>               <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
 
       <span class="c1">// SUCCESS
-</span>      <span class="n">OK</span>                            <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
-      <span class="n">CREATED</span>                       <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
-      <span class="n">ACCEPTED</span>                      <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
-      <span class="n">NON_AUTHORITATIVE_INFORMATION</span>     <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
-      <span class="n">NO_CONTENT</span>                    <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
-      <span class="n">RESET_CONTENT</span>                     <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
-      <span class="n">PARTIAL_CONTENT</span>                   <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
+</span>      <span class="n">OK</span>                              <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+      <span class="n">CREATED</span>                         <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
+      <span class="n">ACCEPTED</span>                        <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
+      <span class="n">NON_AUTHORITATIVE_INFORMATION</span>   <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
+      <span class="n">NO_CONTENT</span>                      <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
+      <span class="n">RESET_CONTENT</span>                   <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
+      <span class="n">PARTIAL_CONTENT</span>                 <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
 
       <span class="c1">// REDIRECTION
-</span>      <span class="n">MULTIPLE_CHOICES</span>          <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
-      <span class="n">MOVED_PERMANENTLY</span>         <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
-      <span class="n">FOUND</span>             <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
-      <span class="n">SEE_OTHER</span>             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
-      <span class="n">NOT_MODIFIED</span>          <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
-      <span class="n">USE_PROXY</span>                         <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
-      <span class="n">TEMPORARY_REDIRECT</span>                <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
+</span>      <span class="n">MULTIPLE_CHOICES</span>                    <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+      <span class="n">MOVED_PERMANENTLY</span>                   <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
+      <span class="n">FOUND</span>                                 <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
+      <span class="n">SEE_OTHER</span>                             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
+      <span class="n">NOT_MODIFIED</span>                        <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
+      <span class="n">USE_PROXY</span>                       <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
+      <span class="n">TEMPORARY_REDIRECT</span>              <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
 
       <span class="c1">// CLIENT ERROR
-</span>      <span class="n">BAD_REQUEST</span>                       <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
-      <span class="n">UNAUTHORIZED</span>                  <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
-      <span class="n">PAYMENT_REQUIRED</span>              <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
-      <span class="n">FORBIDDEN</span>                     <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
-      <span class="n">NOT_FOUND</span>                     <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
-      <span class="n">METHOD_NOT_ALLOWED</span>            <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
-      <span class="n">NOT_ACCEPTABLE</span>            <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
-      <span class="n">PROXY_AUTHENTICATION_REQUIRED</span> <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
-      <span class="n">REQUEST_TIME_OUT</span>          <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
-      <span class="n">CONFLICT</span>                      <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
-      <span class="n">GONE</span>                          <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
-      <span class="n">LENGTH_REQUIRED</span>                   <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
-      <span class="n">PRECONDITION_FAILED</span>               <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
-      <span class="n">REQUEST_ENTITY_TOO_LARGE</span>          <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
-      <span class="n">REQUEST_URI_TOO_LARGE</span>             <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
-      <span class="n">UNSUPPORTED_MEDIA_TYPE</span>            <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
-      <span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span>   <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
+</span>      <span class="n">BAD_REQUEST</span>                     <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
+      <span class="n">UNAUTHORIZED</span>                    <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
+      <span class="n">PAYMENT_REQUIRED</span>                <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
+      <span class="n">FORBIDDEN</span>                       <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
+      <span class="n">NOT_FOUND</span>                       <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
+      <span class="n">METHOD_NOT_ALLOWED</span>                <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
+      <span class="n">NOT_ACCEPTABLE</span>                        <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
+      <span class="n">PROXY_AUTHENTICATION_REQUIRED</span>   <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
+      <span class="n">REQUEST_TIME_OUT</span>                    <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
+      <span class="n">CONFLICT</span>                        <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
+      <span class="n">GONE</span>                              <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
+      <span class="n">LENGTH_REQUIRED</span>                 <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
+      <span class="n">PRECONDITION_FAILED</span>             <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
+      <span class="n">REQUEST_ENTITY_TOO_LARGE</span>        <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
+      <span class="n">REQUEST_URI_TOO_LARGE</span>           <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
+      <span class="n">UNSUPPORTED_MEDIA_TYPE</span>          <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
+      <span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span> <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
       <span class="n">EXPECTATION_FAILED</span>                <span class="o">=</span> <span class="mi">417</span><span class="p">,</span>
 
       <span class="c1">// SERVER ERROR
@@ -732,7 +732,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
       <span class="n">BAD_GATEWAY</span>                       <span class="o">=</span> <span class="mi">502</span><span class="p">,</span>
       <span class="n">SERVICE_UNAVAILABLE</span>               <span class="o">=</span> <span class="mi">503</span><span class="p">,</span>
       <span class="n">GATEWAY_TIME_OUT</span>                  <span class="o">=</span> <span class="mi">504</span><span class="p">,</span>
-      <span class="n">HTTP_VERSION_NOT_SUPPORTED</span>        <span class="o">=</span> <span class="mi">505</span>
+      <span class="n">HTTP_VERSION_NOT_SUPPORTED</span>      <span class="o">=</span> <span class="mi">505</span>
     <span class="p">};</span>
 
     <span class="k">virtual</span> <span class="n">StatusCode</span> <span class="n">getStatusCode</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
