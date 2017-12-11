@@ -103,13 +103,13 @@ class apiServer_fake : public nexusZiaApi::IAPIServer
 
 class hook_fake : public nexusZiaApi::IHooks {
  private:
-  std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>>	_modulesRegister;
+  std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, nexusZiaApi::EnumClassHash>	_modulesRegister;
  public:
   hook_fake();
 
   virtual ~hook_fake();
 
-  virtual const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> &getAllHooksRegister(void) const;
+  virtual const std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, nexusZiaApi::EnumClassHash> & getAllHooksRegister(void) const;
 
   virtual const std::vector<std::string> & getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const;
 

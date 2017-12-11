@@ -199,7 +199,7 @@ const nexusZiaApi::ILogger &apiServer_fake::getLogger(void) const
 
 hook_fake::hook_fake()
 {
-  this->_modulesRegister.emplace_back(std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>(nexusZiaApi::IHooks::Types::CONNECTION, {}));
+  this->_modulesRegister.insert(std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>(nexusZiaApi::IHooks::Types::CONNECTION, {}));
 }
 
 hook_fake::~hook_fake()
@@ -207,7 +207,7 @@ hook_fake::~hook_fake()
 
 }
 
-const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>> &hook_fake::getAllHooksRegister(void) const
+const std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, nexusZiaApi::EnumClassHash> & hook_fake::getAllHooksRegister(void) const
 {
   return this->_modulesRegister;
 }
@@ -215,21 +215,12 @@ const std::vector<std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>
 
 const std::vector<std::string> &hook_fake::getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const
 {
-  size_t i = 0;
-  for (auto it : this->_modulesRegister) {
-    if (it.first == type)
-      return (this->_modulesRegister.at(i).second);
-  }
-  throw std::exception();
+  return this->_modulesRegister.at(type);
 }
 
 void hook_fake::subscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
 {
-  size_t i = 0;
-  for (auto it : this->_modulesRegister) {
-      if (it.first == type)
-	this->_modulesRegister.at(i).second.emplace_back(name);
-    }
+  this->_modulesRegister.find(type)->second.emplace_back(name);
 }
 
 void hook_fake::unSubscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
