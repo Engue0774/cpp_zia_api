@@ -14,7 +14,7 @@
 #include <vector>
 #include "HttpHeader.hpp"
 
-namespace nexusZiaApi {
+namespace nx {
   class IHttpResponse : public IHttpHeader {
    public:
     enum class StatusCode {

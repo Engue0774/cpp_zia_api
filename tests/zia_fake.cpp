@@ -55,7 +55,7 @@ zia_fake::~zia_fake()
   this->_logger->logInfo("Goodbye");
 }
 
-std::shared_ptr<nexusZiaApi::IAPIServer> & zia_fake::getAPIServer(void)
+std::shared_ptr<nx::IAPIServer> & zia_fake::getAPIServer(void)
 {
   return this->_apiServer;
 }
@@ -77,13 +77,13 @@ void zia_fake::loadMyFakeModule()
 	#endif
 }
 
-void zia_fake::triggerFakeEventHttp(nexusZiaApi::IHooks::Types type)
+void zia_fake::triggerFakeEventHttp(nx::IHooks::Types type)
 {
 
   for (auto moduleIt : this->_hooks->getModuleRegisterForType(type)) {
       HttpSession httpSession;
       httpSession.setIP("10.101.10.10");
-      this->_modulesLists.at(moduleIt)->triggerEvent(nexusZiaApi::IHooks::Types::CONNECTION, static_cast<void *>(&httpSession));
+      this->_modulesLists.at(moduleIt)->triggerEvent(nx::IHooks::Types::CONNECTION, static_cast<void *>(&httpSession));
   }
 }
 
@@ -97,21 +97,21 @@ logger_fake::~logger_fake()
 
 }
 
-void logger_fake::log(const nexusZiaApi::ILogger::Level &level, const std::string &msg)
+void logger_fake::log(const nx::ILogger::Level &level, const std::string &msg)
 {
-  if (level == nexusZiaApi::ILogger::Level::INFO) {
+  if (level == nx::ILogger::Level::INFO) {
       this->logInfo(msg);
     }
-  else if (level == nexusZiaApi::ILogger::Level::SUCCESS) {
+  else if (level == nx::ILogger::Level::SUCCESS) {
       this->logSuccess(msg);
     }
-  else if (level == nexusZiaApi::ILogger::Level::WARNING) {
+  else if (level == nx::ILogger::Level::WARNING) {
       this->logWarning(msg);
     }
-  else if (level == nexusZiaApi::ILogger::Level::ERROR) {
+  else if (level == nx::ILogger::Level::ERROR) {
       this->logError(msg);
     }
-  else if (level == nexusZiaApi::ILogger::Level::FATAL_ERROR) {
+  else if (level == nx::ILogger::Level::FATAL_ERROR) {
       this->logFatalError(msg);
     }
   else {
@@ -167,7 +167,7 @@ void logger_fake::logFatalError(const std::string &msg)
 }
 
 // APIServer
-apiServer_fake::apiServer_fake(std::shared_ptr<nexusZiaApi::ILogger> logger, std::shared_ptr<nexusZiaApi::IHooks> hooks)
+apiServer_fake::apiServer_fake(std::shared_ptr<nx::ILogger> logger, std::shared_ptr<nx::IHooks> hooks)
 {
   this->_logger = logger;
   this->_hooks = hooks;
@@ -178,22 +178,22 @@ apiServer_fake::~apiServer_fake()
 
 }
 
-nexusZiaApi::IHooks &apiServer_fake::getHooks(void)
+nx::IHooks &apiServer_fake::getHooks(void)
 {
   return *this->_hooks;
 }
 
-const nexusZiaApi::IHooks &apiServer_fake::getHooks(void) const
+const nx::IHooks &apiServer_fake::getHooks(void) const
 {
   return *this->_hooks;
 }
 
-nexusZiaApi::ILogger &apiServer_fake::getLogger(void)
+nx::ILogger &apiServer_fake::getLogger(void)
 {
   return *this->_logger;
 }
 
-const nexusZiaApi::ILogger &apiServer_fake::getLogger(void) const
+const nx::ILogger &apiServer_fake::getLogger(void) const
 {
   return *this->_logger;
 }
@@ -202,7 +202,7 @@ const nexusZiaApi::ILogger &apiServer_fake::getLogger(void) const
 
 hook_fake::hook_fake()
 {
-  this->_modulesRegister.insert(std::pair<nexusZiaApi::IHooks::Types, std::vector<std::string>>(nexusZiaApi::IHooks::Types::CONNECTION, {}));
+  this->_modulesRegister.insert(std::pair<nx::IHooks::Types, std::vector<std::string>>(nx::IHooks::Types::CONNECTION, {}));
 }
 
 hook_fake::~hook_fake()
@@ -210,23 +210,23 @@ hook_fake::~hook_fake()
 
 }
 
-const std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, nexusZiaApi::EnumClassHash> & hook_fake::getAllHooksRegister(void) const
+const std::unordered_map<nx::IHooks::Types, std::vector<std::string>, nx::EnumClassHash> & hook_fake::getAllHooksRegister(void) const
 {
   return this->_modulesRegister;
 }
 
 
-const std::vector<std::string> &hook_fake::getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const
+const std::vector<std::string> &hook_fake::getModuleRegisterForType(const nx::IHooks::Types type) const
 {
   return this->_modulesRegister.at(type);
 }
 
-void hook_fake::subscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
+void hook_fake::subscribe(const nx::IHooks::Types &type, const std::string &name)
 {
   this->_modulesRegister.find(type)->second.emplace_back(name);
 }
 
-void hook_fake::unSubscribe(const nexusZiaApi::IHooks::Types &type, const std::string &name)
+void hook_fake::unSubscribe(const nx::IHooks::Types &type, const std::string &name)
 {
   for (auto typeIt : this->_modulesRegister) {
       if (typeIt.first == type) {

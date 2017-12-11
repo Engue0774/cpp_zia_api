@@ -32,7 +32,7 @@ class DLLoader
 private:
 	std::unordered_map<std::string, void*>							_handlers;	/**< This param is uses to stock the handlers by file name.*/
 	std::vector<std::string>										_libs;		/**< This param is uses to stock the lib's names.*/
-	std::unordered_map<std::string, nexusZiaApi::IModuleCore*>		_instances; /**< This param stock the instances of each librarys opened.*/
+	std::unordered_map<std::string, nx::IModuleCore*>		_instances; /**< This param stock the instances of each librarys opened.*/
 	std::string														_name;		/**< This param is the name of the DLLoader.*/
 	bool															_debug;		/**< This param allow debug prints.*/
 
@@ -93,10 +93,10 @@ public:
 	*	@param	ist	The name of the instance to reset.
 	*	@return Return an instance newly created of the ist library.
 	*/
-	nexusZiaApi::IModuleCore*						resetLib(const std::string & ist)
+	nx::IModuleCore*						resetLib(const std::string & ist)
 	{
-		nexusZiaApi::IModuleCore*					nIst = nullptr;
-		std::unordered_map<std::string, nexusZiaApi::IModuleCore*> ists = this->_instances;
+		nx::IModuleCore*					nIst = nullptr;
+		std::unordered_map<std::string, nx::IModuleCore*> ists = this->_instances;
 
 		if (_debug)
 			std::cerr << "_> " << ist << " is being reset..." << '\n';
@@ -152,7 +152,7 @@ public:
 	void									deleteInstance(const std::string & path)
 	{
 		void*                               handler;
-		nexusZiaApi::IModuleCore*                                  (*symbol)(nexusZiaApi::IModuleCore*);
+		nx::IModuleCore*                                  (*symbol)(nx::IModuleCore*);
 
 		if (_debug)
 			std::cerr << "_> About to delete instance of [" << path << "]" << std::endl;
@@ -169,7 +169,7 @@ public:
 			return;
 		}
 
-		if ((symbol = reinterpret_cast<nexusZiaApi::IModuleCore *(*)(nexusZiaApi::IModuleCore*)>(dlsym(handler, "DObject"))) == nullptr)
+		if ((symbol = reinterpret_cast<nx::IModuleCore *(*)(nx::IModuleCore*)>(dlsym(handler, "DObject"))) == nullptr)
 			throw nx::DLLoaderException("Error when loading DObject from dll file " + path + ": " + dlerror() + ".");
 
 		symbol(this->_instances.at(path));
@@ -237,7 +237,7 @@ public:
 	*	Get the instances of the libs stocked in memory order by name.
 	*	@return Return a std::unordered_map<std::string, T*> containing all the names and the instances of the libs.
 	*/
-	std::unordered_map<std::string, nexusZiaApi::IModuleCore*>		getInstances(void) const
+	std::unordered_map<std::string, nx::IModuleCore*>		getInstances(void) const
 	{
 		return (this->_instances);
 	}
@@ -246,10 +246,10 @@ public:
 	*	Get the path of a lib from his instance.
 	*	@return Return the name of the instance's lib.
 	*/
-	std::string								getPathByInstance(nexusZiaApi::IModuleCore* ist) const
+	std::string								getPathByInstance(nx::IModuleCore* ist) const
 	{
 		std::string                         res = "";
-		std::unordered_map<std::string, nexusZiaApi::IModuleCore*>	ists = this->_instances;
+		std::unordered_map<std::string, nx::IModuleCore*>	ists = this->_instances;
 
 		for (auto it = ists.begin(); it != ists.end(); it++)
 		{
@@ -264,10 +264,10 @@ public:
 	*	@param	path	Design the path of the library to get instance of.
 	*	@return An instance of the library design by the param path.
 	*/
-	nexusZiaApi::IModuleCore*						getInstance(const std::string & path)
+	nx::IModuleCore*						getInstance(const std::string & path)
 	{
 		void*                               handler;
-		nexusZiaApi::IModuleCore*                                  (*symbol)();
+		nx::IModuleCore*                                  (*symbol)();
 
 		if (this->_instances[path])
 			return (this->_instances.at(path));
@@ -277,7 +277,7 @@ public:
 		if (this->_debug)
 			std::cerr << "_> Creating new instance of [" << path << "] in (" << this->_name << ")..." << std::endl;
 
-		if ((symbol = reinterpret_cast<nexusZiaApi::IModuleCore *(*)()>(dlsym(handler, "CObject"))) == nullptr)
+		if ((symbol = reinterpret_cast<nx::IModuleCore *(*)()>(dlsym(handler, "CObject"))) == nullptr)
 		{
 			this->_handlers.erase(path);
 			std::cerr << dlerror() << std::endl;

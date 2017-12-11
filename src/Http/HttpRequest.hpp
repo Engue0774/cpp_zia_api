@@ -13,7 +13,7 @@
 
 #include "HttpHeader.hpp"
 
-namespace nexusZiaApi {
+namespace nx {
   class IHttpRequest : public IHttpHeader {
    public:
     enum class Method {

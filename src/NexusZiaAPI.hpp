@@ -1,5 +1,5 @@
 /*
-** NexusAPIZia.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/NexusAPIZia.hpp
+** NexusAPIZia.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/NexusAPIZia.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,8 +8,8 @@
 ** Last update Tue Nov 14 18:21:46 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_NEXUSZIAAPI_HPP
-#define CPP_ZIA_API_NEXUSZIAAPI_HPP
+#ifndef NEXUSZIAAPI_NEXUSZIAAPI_HPP
+#define NEXUSZIAAPI_NEXUSZIAAPI_HPP
 
 /**
  *	@file This header is for include all header of API
@@ -32,4 +32,4 @@
 
 #include "Utils.hpp"
 
-#endif //CPP_ZIA_API_NEXUSZIAAPI_HPP
+#endif //NEXUSZIAAPI_NEXUSZIAAPI_HPP

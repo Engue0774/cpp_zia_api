@@ -28,7 +28,7 @@ LogEmailZia::LogEmail::~LogEmail()
 void LogEmailZia::LogEmail::start(void)
 {
   // Subscribe Hooks
-  this->_apiServer->getHooks().subscribe(nexusZiaApi::IHooks::Types::CONNECTION, "LogEmail");
+  this->_apiServer->getHooks().subscribe(nx::IHooks::Types::CONNECTION, "LogEmail");
 
   this->_apiServer->getLogger().logSuccess("[LOG EMAIL] Module is start");
 }
@@ -36,7 +36,7 @@ void LogEmailZia::LogEmail::start(void)
 void LogEmailZia::LogEmail::stop(void)
 {
   // UnSubscibe Hooks
-  this->_apiServer->getHooks().unSubscribe(nexusZiaApi::IHooks::Types::CONNECTION, "LogEmail");
+  this->_apiServer->getHooks().unSubscribe(nx::IHooks::Types::CONNECTION, "LogEmail");
 
   this->_apiServer->getLogger().logInfo("[LOG EMAIL] Module is stop");
 }
@@ -51,30 +51,30 @@ void LogEmailZia::LogEmail::setName(const std::string &name)
 
 }
 
-nexusZiaApi::IModuleConfig &LogEmailZia::LogEmail::getModuleConfig(void)
+nx::IModuleConfig &LogEmailZia::LogEmail::getModuleConfig(void)
 {
   return *this->_moduleConfig;
 }
 
-void LogEmailZia::LogEmail::setAPIServer(std::shared_ptr<nexusZiaApi::IAPIServer> apiServer)
+void LogEmailZia::LogEmail::setAPIServer(std::shared_ptr<nx::IAPIServer> apiServer)
 {
   this->_apiServer = apiServer;
 }
 
-nexusZiaApi::IAPIServer &LogEmailZia::LogEmail::getAPIServer(void)
+nx::IAPIServer &LogEmailZia::LogEmail::getAPIServer(void)
 {
   return *this->_apiServer;
 }
 
-nexusZiaApi::IHooks::ReturnEvent LogEmailZia::LogEmail::triggerEvent(nexusZiaApi::IHooks::Types type, void *data)
+nx::IHooks::ReturnEvent LogEmailZia::LogEmail::triggerEvent(nx::IHooks::Types type, void *data)
 {
   this->getAPIServer().getLogger().logInfo("[LOG EMAIL] Event func trigger");
-  if (type == nexusZiaApi::IHooks::Types::CONNECTION) {
+  if (type == nx::IHooks::Types::CONNECTION) {
       HttpSession * httpSession = static_cast<HttpSession *>(data);
       this->getAPIServer().getLogger().logInfo("[LOG EMAIL] New connection of " + httpSession->getIP());
 
     }
-  return nexusZiaApi::IHooks::ReturnEvent::SUCCESS;
+  return nx::IHooks::ReturnEvent::SUCCESS;
 }
 
 extern "C"

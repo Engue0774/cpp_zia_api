@@ -1,5 +1,5 @@
 /*
-** ModuleCore.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/ModuleCore.hpp
+** ModuleCore.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/ModuleCore.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,8 +8,8 @@
 ** Last update Fri Nov 10 14:46:42 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_MODULECORE_HPP
-#define CPP_ZIA_API_MODULECORE_HPP
+#ifndef NEXUSZIAAPI_MODULECORE_HPP
+#define NEXUSZIAAPI_MODULECORE_HPP
 
 #include <string>
 #include <memory>
@@ -18,7 +18,7 @@
 #include "../Hooks/Hooks.hpp"
 #include "APIServer.hpp"
 
-namespace nexusZiaApi {
+namespace nx {
 	class IModuleCore
 	{
 	 public:
@@ -82,4 +82,4 @@ namespace nexusZiaApi {
 	};
 }
 
-#endif //CPP_ZIA_API_MODULECORE_HPP
+#endif //NEXUSZIAAPI_MODULECORE_HPP

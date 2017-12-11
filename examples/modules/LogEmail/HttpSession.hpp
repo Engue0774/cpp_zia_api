@@ -15,7 +15,7 @@
 
 namespace LogEmailZia
 {
-  class HttpSession : public nexusZiaApi::IHttpSession {
+  class HttpSession : public nx::IHttpSession {
    private:
     std::string _ip;
    public:

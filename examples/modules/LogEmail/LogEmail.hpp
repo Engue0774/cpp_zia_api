@@ -19,7 +19,7 @@
 #include "HttpSession.hpp"
 
 namespace LogEmailZia {
-  class LogEmail : public nexusZiaApi::IModuleCore
+  class LogEmail : public nx::IModuleCore
   {
    private:
     static std::shared_ptr<LogEmailZia::LogEmail>						_instance;
@@ -29,8 +29,8 @@ namespace LogEmailZia {
     static void resetInstance();
 
   private:
-    std::shared_ptr<nexusZiaApi::IModuleConfig>	_moduleConfig;
-    std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
+    std::shared_ptr<nx::IModuleConfig>	_moduleConfig;
+    std::shared_ptr<nx::IAPIServer>	_apiServer;
 
   private:
     LogEmail();
@@ -40,7 +40,7 @@ namespace LogEmailZia {
    public:
 
     // Event
-    static nexusZiaApi::IHooks::ReturnEvent event_CONNECTION();
+    static nx::IHooks::ReturnEvent event_CONNECTION();
 
     // IModuleCore
     virtual void start(void);
@@ -51,13 +51,13 @@ namespace LogEmailZia {
 
     virtual void setName(const std::string &name);
 
-    virtual nexusZiaApi::IModuleConfig &getModuleConfig(void);
+    virtual nx::IModuleConfig &getModuleConfig(void);
 
-    virtual void setAPIServer(std::shared_ptr<nexusZiaApi::IAPIServer> apiServer);
+    virtual void setAPIServer(std::shared_ptr<nx::IAPIServer> apiServer);
 
-    virtual nexusZiaApi::IAPIServer &getAPIServer(void);
+    virtual nx::IAPIServer &getAPIServer(void);
 
-    virtual nexusZiaApi::IHooks::ReturnEvent triggerEvent(nexusZiaApi::IHooks::Types type, void *data);
+    virtual nx::IHooks::ReturnEvent triggerEvent(nx::IHooks::Types type, void *data);
   };
 }
 

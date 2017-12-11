@@ -1,5 +1,5 @@
 /*
-** APIServer.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/APIServer.hpp
+** APIServer.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/APIServer.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,13 +8,13 @@
 ** Last update Wed Nov 15 10:33:39 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_APISERVER_HPP
-#define CPP_ZIA_API_APISERVER_HPP
+#ifndef NEXUSZIAAPI_APISERVER_HPP
+#define NEXUSZIAAPI_APISERVER_HPP
 
 #include "../Hooks/Hooks.hpp"
 #include "../Logger/Logger.hpp"
 
-namespace  nexusZiaApi {
+namespace nx {
 class IAPIServer {
  public:
   /**
@@ -45,4 +45,4 @@ class IAPIServer {
 };
 }
 
-#endif //CPP_ZIA_API_APISERVER_HPP
+#endif //NEXUSZIAAPI_APISERVER_HPP

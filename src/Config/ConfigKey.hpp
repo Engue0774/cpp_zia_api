@@ -1,5 +1,5 @@
 /*
-** ConfigKey.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/ConfigKey.hpp
+** ConfigKey.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/ConfigKey.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,12 +8,12 @@
 ** Last update Tue Nov 14 18:20:51 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_CONFIGKEY_HPP
-#define CPP_ZIA_API_CONFIGKEY_HPP
+#ifndef NEXUSZIAAPI_CONFIGKEY_HPP
+#define NEXUSZIAAPI_CONFIGKEY_HPP
 
 #include <string>
 
-namespace nexusZiaApi {
+namespace nx {
 	class IConfigKey {
 	 public:
 	  enum class Type {
@@ -68,4 +68,4 @@ namespace nexusZiaApi {
 	};
 }
 
-#endif //CPP_ZIA_API_CONFIGKEY_HPP
+#endif //NEXUSZIAAPI_CONFIGKEY_HPP
