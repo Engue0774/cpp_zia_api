@@ -313,7 +313,7 @@
 <blockquote>
 <p>IModuleCore header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
     <span class="k">class</span> <span class="nc">IModuleCore</span>
     <span class="p">{</span>
      <span class="k">public</span><span class="o">:</span>
@@ -366,8 +366,15 @@
        */</span>
       <span class="k">virtual</span> <span class="n">IAPIServer</span> <span class="o">&amp;</span> <span class="n">getAPIServer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-      <span class="c1">//Todo Add trigger function for hooks
-</span>    <span class="p">};</span>
+
+      <span class="cm">/**
+       * Function call if event is register for this module and trigger
+       * @param type Type of event
+       * @param data Data event
+       * @return
+       */</span>
+      <span class="k">virtual</span> <span class="n">IHooks</span><span class="o">::</span><span class="n">ReturnEvent</span> <span class="n">triggerEvent</span><span class="p">(</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="n">type</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
 <p>L&#39;interface IModuleCore définit un ensemble de fonctions d&#39;un module.</p>
@@ -379,11 +386,9 @@ Tous les modules doivent implementer toutes les **fonctions** de **l'interface**
 <blockquote>
 <p>IAPIServer header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span>  <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span>  <span class="n">nx</span> <span class="p">{</span>
 <span class="k">class</span> <span class="nc">IAPIServer</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">IAPIServer</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-
   <span class="cm">/**
    * Get hooks API server
    * @attention This functions allow edit of reference
@@ -421,7 +426,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>ILogger header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
 <span class="k">class</span> <span class="nc">ILogger</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
@@ -435,8 +440,6 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
     <span class="n">ERROR</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">FATAL_ERROR</span> <span class="o">=</span> <span class="mi">5</span>
   <span class="p">};</span>
-
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">ILogger</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
 
   <span class="cm">/**
    * Log message
@@ -521,7 +524,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IHooks header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
 <span class="k">class</span> <span class="nc">IHooks</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
@@ -530,13 +533,13 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
   <span class="k">enum</span> <span class="k">class</span> <span class="nc">Types</span> <span class="p">{</span>
     <span class="n">DEFAULT</span>         <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">CONNECTION</span>          <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">REQUEST_BEFORE_PARSING</span><span class="p">,</span>
-    <span class="n">REQUEST_PARSING</span><span class="p">,</span>
-    <span class="n">REQUEST_AFTER_PARSING</span><span class="p">,</span>
-    <span class="n">RESPONSE_BEFORE_BUILD</span><span class="p">,</span>
-    <span class="n">RESPONSE_BUILD</span><span class="p">,</span>
-    <span class="n">RESPONSE_AFTER_BUILD</span><span class="p">,</span>
-    <span class="n">RESPONSE_SEND</span>
+    <span class="n">REQUEST_BEFORE_PARSING</span>  <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">REQUEST_PARSING</span>     <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">REQUEST_AFTER_PARSING</span>   <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">RESPONSE_BEFORE_BUILD</span>   <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">RESPONSE_BUILD</span>      <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="n">RESPONSE_AFTER_BUILD</span>    <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">RESPONSE_SEND</span>       <span class="o">=</span> <span class="mi">9</span>
   <span class="p">};</span>
 
   <span class="k">enum</span> <span class="k">class</span> <span class="nc">ReturnEvent</span> <span class="p">{</span>
@@ -548,7 +551,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
    * Get list of hooks Register
    * @return
    */</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">nexusZiaApi</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;&gt;</span> <span class="o">&amp;</span> <span class="n">getAllHooksRegister</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">nexusZiaApi</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">EnumClassHash</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getAllHooksRegister</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
    * Get module register for type
@@ -618,7 +621,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IHttpHeader header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
 <span class="k">class</span> <span class="nc">IHttpHeader</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
@@ -634,7 +637,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
    * @param key
    * @return
    */</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
@@ -643,7 +646,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IHttpRequest header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
   <span class="k">class</span> <span class="nc">IHttpRequest</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IHttpHeader</span> <span class="p">{</span>
    <span class="k">public</span><span class="o">:</span>
     <span class="k">enum</span> <span class="k">class</span> <span class="nc">Method</span> <span class="p">{</span>
@@ -661,11 +664,12 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 
     <span class="k">virtual</span> <span class="k">const</span> <span class="n">Method</span> <span class="n">getMethod</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getURI</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">getURI</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setMethod</span><span class="p">(</span><span class="n">Method</span> <span class="n">method</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setURI</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">uri</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// fixme uri or url ?
+</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setURI</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">uri</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
@@ -674,74 +678,74 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IHttpResponse header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
   <span class="k">class</span> <span class="nc">IHttpResponse</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IHttpHeader</span> <span class="p">{</span>
    <span class="k">public</span><span class="o">:</span>
     <span class="k">enum</span> <span class="k">class</span> <span class="nc">StatusCode</span> <span class="p">{</span>
       <span class="n">UNDEFINED</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 
-      <span class="c1">// Informational
-</span>      <span class="n">Continue</span>              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
-      <span class="n">Switching_Protocols</span>       <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
+      <span class="c1">// INFORMATIONAL
+</span>      <span class="n">CONTINUE</span>              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="n">SWITCHING_PROTOCOLS</span>       <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
 
-      <span class="c1">// Success
+      <span class="c1">// SUCCESS
 </span>      <span class="n">OK</span>                            <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
-      <span class="n">Created</span>                       <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
-      <span class="n">Accepted</span>                      <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
-      <span class="n">Non__Authoritative_Information</span>    <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
-      <span class="n">No_Content</span>                    <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
-      <span class="n">Reset_Content</span>                     <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
-      <span class="n">Partial_Content</span>                   <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
+      <span class="n">CREATED</span>                       <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
+      <span class="n">ACCEPTED</span>                      <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
+      <span class="n">NON_AUTHORITATIVE_INFORMATION</span>     <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
+      <span class="n">NO_CONTENT</span>                    <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
+      <span class="n">RESET_CONTENT</span>                     <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
+      <span class="n">PARTIAL_CONTENT</span>                   <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
 
-      <span class="c1">// Redirection
-</span>      <span class="n">Multiple_Choices</span>          <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
-      <span class="n">Moved_Permanently</span>         <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
-      <span class="n">Found</span>             <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
-      <span class="n">See_Other</span>             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
-      <span class="n">Not_Modified</span>          <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
-      <span class="n">Use_Proxy</span>                         <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
-      <span class="n">Temporary_Redirect</span>                <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
+      <span class="c1">// REDIRECTION
+</span>      <span class="n">MULTIPLE_CHOICES</span>          <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+      <span class="n">MOVED_PERMANENTLY</span>         <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
+      <span class="n">FOUND</span>             <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
+      <span class="n">SEE_OTHER</span>             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
+      <span class="n">NOT_MODIFIED</span>          <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
+      <span class="n">USE_PROXY</span>                         <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
+      <span class="n">TEMPORARY_REDIRECT</span>                <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
 
-      <span class="c1">// Client Error
-</span>      <span class="n">Bad_Request</span>                       <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
-      <span class="n">Unauthorized</span>                  <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
-      <span class="n">Payment_Required</span>              <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
-      <span class="n">Forbidden</span>                     <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
-      <span class="n">Not_Found</span>                     <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
-      <span class="n">Method_Not_Allowed</span>            <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
-      <span class="n">Not_Acceptable</span>            <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
-      <span class="n">Proxy_Authentication_Required</span> <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
-      <span class="n">Request_Time__Out</span>         <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
-      <span class="n">Conflict</span>                      <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
-      <span class="n">Gone</span>                          <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
-      <span class="n">Length_Required</span>                   <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
-      <span class="n">Precondition_Failed</span>               <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
-      <span class="n">Request_Entity_Too_Large</span>          <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
-      <span class="n">Request__URI_Too_Large</span>            <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
-      <span class="n">Unsupported_Media_Type</span>            <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
-      <span class="n">Requested_Range_Not_Satisfiable</span>   <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
-      <span class="n">Expectation_Failed</span>                <span class="o">=</span> <span class="mi">417</span><span class="p">,</span>
+      <span class="c1">// CLIENT ERROR
+</span>      <span class="n">BAD_REQUEST</span>                       <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
+      <span class="n">UNAUTHORIZED</span>                  <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
+      <span class="n">PAYMENT_REQUIRED</span>              <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
+      <span class="n">FORBIDDEN</span>                     <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
+      <span class="n">NOT_FOUND</span>                     <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
+      <span class="n">METHOD_NOT_ALLOWED</span>            <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
+      <span class="n">NOT_ACCEPTABLE</span>            <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
+      <span class="n">PROXY_AUTHENTICATION_REQUIRED</span> <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
+      <span class="n">REQUEST_TIME_OUT</span>          <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
+      <span class="n">CONFLICT</span>                      <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
+      <span class="n">GONE</span>                          <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
+      <span class="n">LENGTH_REQUIRED</span>                   <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
+      <span class="n">PRECONDITION_FAILED</span>               <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
+      <span class="n">REQUEST_ENTITY_TOO_LARGE</span>          <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
+      <span class="n">REQUEST_URI_TOO_LARGE</span>             <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
+      <span class="n">UNSUPPORTED_MEDIA_TYPE</span>            <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
+      <span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span>   <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
+      <span class="n">EXPECTATION_FAILED</span>                <span class="o">=</span> <span class="mi">417</span><span class="p">,</span>
 
-      <span class="c1">// Server Error
-</span>      <span class="n">Internal_Server_Error</span>             <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
-      <span class="n">Not_Implemented</span>                   <span class="o">=</span> <span class="mi">501</span><span class="p">,</span>
-      <span class="n">Bad_Gateway</span>                       <span class="o">=</span> <span class="mi">502</span><span class="p">,</span>
-      <span class="n">Service_Unavailable</span>               <span class="o">=</span> <span class="mi">503</span><span class="p">,</span>
-      <span class="n">Gateway_Time__Out</span>                 <span class="o">=</span> <span class="mi">504</span><span class="p">,</span>
-      <span class="n">HTTP_Version_Not_Supported</span>        <span class="o">=</span> <span class="mi">505</span>
+      <span class="c1">// SERVER ERROR
+</span>      <span class="n">INTERNAL_SERVER_ERROR</span>             <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+      <span class="n">NOT_IMPLEMENTED</span>                   <span class="o">=</span> <span class="mi">501</span><span class="p">,</span>
+      <span class="n">BAD_GATEWAY</span>                       <span class="o">=</span> <span class="mi">502</span><span class="p">,</span>
+      <span class="n">SERVICE_UNAVAILABLE</span>               <span class="o">=</span> <span class="mi">503</span><span class="p">,</span>
+      <span class="n">GATEWAY_TIME_OUT</span>                  <span class="o">=</span> <span class="mi">504</span><span class="p">,</span>
+      <span class="n">HTTP_VERSION_NOT_SUPPORTED</span>        <span class="o">=</span> <span class="mi">505</span>
     <span class="p">};</span>
 
-    <span class="k">virtual</span> <span class="k">const</span> <span class="n">StatusCode</span> <span class="n">getStatusCode</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="n">StatusCode</span> <span class="n">getStatusCode</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getReason</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">getReason</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getData</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getData</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setStatusCode</span><span class="p">(</span><span class="n">StatusCode</span> <span class="n">statusCode</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setReason</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">reason</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setReason</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">reason</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setData</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
@@ -750,10 +754,10 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IHttpSession header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
-  <span class="k">class</span> <span class="nc">IHttpSession</span><span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">IHttpSession</span> <span class="p">{</span>
    <span class="k">public</span><span class="o">:</span>
-    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getIP</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">getIP</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setIP</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ip</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">};</span>
@@ -764,7 +768,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IConfig header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
     <span class="k">class</span> <span class="nc">IModuleConfig</span>
     <span class="p">{</span>
      <span class="k">public</span><span class="o">:</span>
@@ -800,7 +804,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
        * In loading, is load, error in config, etc
        * @return
        */</span>
-      <span class="k">virtual</span> <span class="k">const</span> <span class="n">State</span> <span class="o">&amp;</span> <span class="n">getState</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">State</span> <span class="o">&amp;</span> <span class="n">getState</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
        *
@@ -815,14 +819,14 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
        * @param key
        * @return const IConfigKey &amp;
        */</span>
-      <span class="k">virtual</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">getKeyOne</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">getKeyOne</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
        * Get list of key in config of module
        * @param key
-       * @return std::vector&lt;IConfigkey&gt;
+       * @return const std::vector&lt;IConfigkey&gt; &amp;
        */</span>
-      <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">IConfigKey</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">IConfigKey</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
@@ -831,7 +835,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <blockquote>
 <p>IConfigKey header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nexusZiaApi</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
     <span class="k">class</span> <span class="nc">IConfigKey</span> <span class="p">{</span>
      <span class="k">public</span><span class="o">:</span>
       <span class="k">enum</span> <span class="k">class</span> <span class="nc">Type</span> <span class="p">{</span>
