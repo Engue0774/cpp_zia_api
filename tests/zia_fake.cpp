@@ -253,7 +253,7 @@ const std::string& HttpSession::getIP() const
   return this->_ip;
 }
 
-void HttpSession::setIP(const std::string & ip)
+void HttpSession::setIP(std::string ip)
 {
   this->_ip = ip;
 }
