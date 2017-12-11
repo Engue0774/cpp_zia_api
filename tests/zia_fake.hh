@@ -118,5 +118,20 @@ class hook_fake : public nexusZiaApi::IHooks {
   virtual void unSubscribe(const Types &type, const std::string &name);
 };
 
+//
+
+class HttpSession : public nexusZiaApi::IHttpSession {
+ private:
+  std::string _ip;
+ public:
+  HttpSession();
+
+  virtual ~HttpSession();
+
+  virtual const std::string & getIP(void) const;
+
+  virtual void setIP(std::string ip);
+};
+
 
 #endif //CPP_ZIA_API_ZIA_FAKE_HH

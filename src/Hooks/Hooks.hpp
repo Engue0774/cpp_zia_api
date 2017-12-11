@@ -13,8 +13,10 @@
 
 #include <vector>
 #include <unordered_map>
+#include <string>
 #include <functional>
 #include "../Utils.hpp"
+
 
 namespace nexusZiaApi {
 class IHooks {

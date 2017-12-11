@@ -14,7 +14,7 @@
 #include <string>
 
 namespace nexusZiaApi {
-  class IHttpSession{
+  class IHttpSession {
    public:
     virtual const std::string &getIP(void) const = 0;
 
