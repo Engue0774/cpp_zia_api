@@ -72,7 +72,7 @@ namespace nexusZiaApi {
 	  /**
 	   * Get list of key in config of module
 	   * @param key
-	   * @return std::list<IConfigkey>
+	   * @return std::vector<IConfigkey>
 	   */
 	  virtual const std::vector<IConfigKey> & getKey(const std::string & key) const = 0;
 	};
