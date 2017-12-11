@@ -1,5 +1,5 @@
 /*
-** Logger.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/Logger.hpp
+** Logger.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/Logger.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,12 +8,12 @@
 ** Last update Fri Nov 10 13:28:22 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_LOGGER_HPP
-#define CPP_ZIA_API_LOGGER_HPP
+#ifndef NEXUSZIAAPI_LOGGER_HPP
+#define NEXUSZIAAPI_LOGGER_HPP
 
 #include <string>
 
-namespace nexusZiaApi {
+namespace nx {
 class ILogger {
  public:
   /**
@@ -74,4 +74,4 @@ class ILogger {
 };
 }
 
-#endif //CPP_ZIA_API_LOGGER_HPP
+#endif //NEXUSZIAAPI_LOGGER_HPP

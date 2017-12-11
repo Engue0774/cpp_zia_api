@@ -11,7 +11,7 @@
 #ifndef NEXUSZIAAPI_UTILS_HPP
 #define NEXUSZIAAPI_UTILS_HPP
 
-namespace nexusZiaApi {
+namespace nx {
   struct EnumClassHash
   {
     template <typename T>

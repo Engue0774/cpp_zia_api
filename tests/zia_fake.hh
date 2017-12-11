@@ -21,7 +21,7 @@
 #include "DLLoader.hpp"
 #endif
 
-class HttpHeader_fake : public nexusZiaApi::IHttpHeader {
+class HttpHeader_fake : public nx::IHttpHeader {
  private:
   std::unordered_map<std::string, std::string>	_data;
  public:
@@ -34,7 +34,7 @@ class HttpHeader_fake : public nexusZiaApi::IHttpHeader {
   virtual const std::string & getKey(const std::string & key);
 };
 
-class logger_fake : public nexusZiaApi::ILogger
+class logger_fake : public nx::ILogger
 {
  public:
   logger_fake();
@@ -61,57 +61,57 @@ class logger_fake : public nexusZiaApi::ILogger
 class zia_fake
 {
  private:
-  std::shared_ptr<nexusZiaApi::ILogger>		_logger;
-  std::shared_ptr<nexusZiaApi::IHooks>		_hooks;
-  std::shared_ptr<nexusZiaApi::IAPIServer>	_apiServer;
+  std::shared_ptr<nx::ILogger>		_logger;
+  std::shared_ptr<nx::IHooks>		_hooks;
+  std::shared_ptr<nx::IAPIServer>	_apiServer;
 	#ifdef __linux__
   DLLoader                   _loader;
   	#endif
 
-  std::unordered_map<std::string, nexusZiaApi::IModuleCore*>	_modulesLists;
+  std::unordered_map<std::string, nx::IModuleCore*>	_modulesLists;
  public:
   zia_fake();
   virtual ~zia_fake();
 
-  std::shared_ptr<nexusZiaApi::IAPIServer> & getAPIServer();
+  std::shared_ptr<nx::IAPIServer> & getAPIServer();
 
   void	loadMyFakeModule();
-  void  triggerFakeEventHttp(nexusZiaApi::IHooks::Types type);
+  void  triggerFakeEventHttp(nx::IHooks::Types type);
 };
 
 //
 
-class apiServer_fake : public nexusZiaApi::IAPIServer
+class apiServer_fake : public nx::IAPIServer
 {
  private:
-  std::shared_ptr<nexusZiaApi::ILogger>	_logger;
-  std::shared_ptr<nexusZiaApi::IHooks>	_hooks;
+  std::shared_ptr<nx::ILogger>	_logger;
+  std::shared_ptr<nx::IHooks>	_hooks;
  public:
-  apiServer_fake(std::shared_ptr<nexusZiaApi::ILogger>, std::shared_ptr<nexusZiaApi::IHooks>);
+  apiServer_fake(std::shared_ptr<nx::ILogger>, std::shared_ptr<nx::IHooks>);
   virtual ~apiServer_fake();
 
-  virtual nexusZiaApi::IHooks &getHooks(void);
+  virtual nx::IHooks &getHooks(void);
 
-  virtual const nexusZiaApi::IHooks &getHooks(void) const;
+  virtual const nx::IHooks &getHooks(void) const;
 
-  virtual nexusZiaApi::ILogger &getLogger(void);
+  virtual nx::ILogger &getLogger(void);
 
-  virtual const nexusZiaApi::ILogger &getLogger(void) const;
+  virtual const nx::ILogger &getLogger(void) const;
 };
 
 //
 
-class hook_fake : public nexusZiaApi::IHooks {
+class hook_fake : public nx::IHooks {
  private:
-  std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, nexusZiaApi::EnumClassHash>	_modulesRegister;
+  std::unordered_map<nx::IHooks::Types, std::vector<std::string>, nx::EnumClassHash>	_modulesRegister;
  public:
   hook_fake();
 
   virtual ~hook_fake();
 
-  virtual const std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, nexusZiaApi::EnumClassHash> & getAllHooksRegister(void) const;
+  virtual const std::unordered_map<nx::IHooks::Types, std::vector<std::string>, nx::EnumClassHash> & getAllHooksRegister(void) const;
 
-  virtual const std::vector<std::string> & getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const;
+  virtual const std::vector<std::string> & getModuleRegisterForType(const nx::IHooks::Types type) const;
 
   virtual void subscribe(const Types &type, const std::string &name);
 
@@ -120,7 +120,7 @@ class hook_fake : public nexusZiaApi::IHooks {
 
 //
 
-class HttpSession : public nexusZiaApi::IHttpSession {
+class HttpSession : public nx::IHttpSession {
  private:
   std::string _ip;
  public:

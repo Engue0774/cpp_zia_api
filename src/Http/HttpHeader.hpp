@@ -1,5 +1,5 @@
 /*
-** HttpHeader.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/HttpHeader.hpp
+** HttpHeader.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/HttpHeader.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,12 +8,12 @@
 ** Last update Wed Nov 15 00:09:39 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_HTTPHEADER_HPP
-#define CPP_ZIA_API_HTTPHEADER_HPP
+#ifndef NEXUSZIAAPI_HTTPHEADER_HPP
+#define NEXUSZIAAPI_HTTPHEADER_HPP
 
 #include <string>
 
-namespace nexusZiaApi {
+namespace nx {
 class IHttpHeader {
  public:
   /**
@@ -33,4 +33,4 @@ class IHttpHeader {
 };
 }
 
-#endif //CPP_ZIA_API_HTTPHEADER_HPP
+#endif //NEXUSZIAAPI_HTTPHEADER_HPP

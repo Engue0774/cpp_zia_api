@@ -1,5 +1,5 @@
 /*
-** ModuleConfigAPI.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/ModuleConfigAPI.hpp
+** ModuleConfigAPI.hpp for nexusZiaAPI in /home/enguerrand/delivery/nexusZiaAPI/ModuleConfigAPI.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,15 +8,15 @@
 ** Last update Fri Nov 10 13:50:32 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_MODULECONFIG_HPP
-#define CPP_ZIA_API_MODULECONFIG_HPP
+#ifndef NEXUSZIAAPI_MODULECONFIG_HPP
+#define NEXUSZIAAPI_MODULECONFIG_HPP
 
 #include <string>
 #include <vector>
 
 #include "ConfigKey.hpp"
 
-namespace nexusZiaApi {
+namespace nx {
 	class IModuleConfig
 	{
 	 public:
@@ -78,4 +78,4 @@ namespace nexusZiaApi {
 	};
 }
 
-#endif //CPP_ZIA_API_MODULECONFIGAPI_HPP
+#endif //NEXUSZIAAPI_MODULECONFIGAPI_HPP

@@ -1,5 +1,5 @@
 /*
-** Hooks.hpp for cpp_zia_api in /home/enguerrand/delivery/cpp_zia_api/Hooks.hpp
+** Hooks.hpp for nexusZiaApi in /home/enguerrand/delivery/nexusZiaAPI/Hooks.hpp
 **
 ** Made by Enguerrand Allamel
 ** Login   <enguerrand.allamel@epitech.eu>
@@ -8,8 +8,8 @@
 ** Last update Tue Nov 14 17:39:09 2017 Enguerrand Allamel
 */
 
-#ifndef CPP_ZIA_API_HOOKS_HPP
-#define CPP_ZIA_API_HOOKS_HPP
+#ifndef NEXUSZIAAPI_HOOKS_HPP
+#define NEXUSZIAAPI_HOOKS_HPP
 
 #include <vector>
 #include <unordered_map>
@@ -18,7 +18,7 @@
 #include "../Utils.hpp"
 
 
-namespace nexusZiaApi {
+namespace nx {
 class IHooks {
  public:
   /**
@@ -45,14 +45,14 @@ class IHooks {
    * Get list of hooks Register
    * @return
    */
-  virtual const std::unordered_map<nexusZiaApi::IHooks::Types, std::vector<std::string>, EnumClassHash> & getAllHooksRegister(void) const = 0;
+  virtual const std::unordered_map<nx::IHooks::Types, std::vector<std::string>, EnumClassHash> & getAllHooksRegister(void) const = 0;
 
   /**
    * Get module register for type
    * @param name Module name
    * @return
    */
-  virtual const std::vector<std::string> & getModuleRegisterForType(const nexusZiaApi::IHooks::Types type) const = 0;
+  virtual const std::vector<std::string> & getModuleRegisterForType(const nx::IHooks::Types type) const = 0;
 
   /**
    * Add hook register
@@ -70,4 +70,4 @@ class IHooks {
 };
 }
 
-#endif //CPP_ZIA_API_HOOKS_HPP
+#endif //NEXUSZIAAPI_HOOKS_HPP

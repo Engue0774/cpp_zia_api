@@ -24,6 +24,6 @@ int main(int, char**)
 
   // Trigger fake event in my Zia
 
-  ziaFake.triggerFakeEventHttp(nexusZiaApi::IHooks::Types::CONNECTION);
+  ziaFake.triggerFakeEventHttp(nx::IHooks::Types::CONNECTION);
   return (0);
 }
