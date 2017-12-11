@@ -1,4 +1,6 @@
 # NexusZiaApi
+*More informations about us here: [Nexus-Software](https://nexus-software.fr)*
+
 ![CPP](https://img.shields.io/badge/C++-11-blue.svg)
 [![Build Status](https://travis-ci.org/Nexus-Software/NexusZiaApi.svg?branch=master)](https://travis-ci.org/Nexus-Software/NexusZiaApi)
 [![Build status](https://ci.appveyor.com/api/projects/status/493qgqfqck1iqeyx/branch/master?svg=true)](https://ci.appveyor.com/project/aenguerrand/nexusziaapi/branch/master)
@@ -42,6 +44,10 @@ cd build
 cmake ..
 cmake --build .
 ```
+
+## Documentation
+
+Website of documentation each interface is available on https://nexus-software.github.io/NexusZiaApi/
 
 ## Contributing
 
