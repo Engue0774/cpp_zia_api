@@ -26,7 +26,7 @@ namespace LogEmailZia
       return this->_ip;
     }
 
-    virtual void setIP(std::string ip) {
+    virtual void setIP(const std::string & ip) {
       this->_ip = ip;
     }
   };

@@ -130,7 +130,7 @@ class HttpSession : public nexusZiaApi::IHttpSession {
 
   virtual const std::string & getIP(void) const;
 
-  virtual void setIP(std::string ip);
+  virtual void setIP(const std::string & ip);
 };
 
 
