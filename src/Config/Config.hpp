@@ -21,7 +21,7 @@ namespace nx {
 	{
 	 public:
 	  /**
-	   * State of config loading
+	   * State of config for loading
 	   */
 	  enum class State
 	  {
@@ -32,24 +32,24 @@ namespace nx {
 	  };
 
 	  /**
-	   * Init config of module
+	   * Init module's configuration
 	   * Default value of each key, etc
 	   */
 	  virtual void	init(void) = 0;
 
 	  /**
-	   * Load config of module
+	   * Load module's configuration
 	   */
 	  virtual void 	load(void) = 0;
 
 	  /**
-	   * Reload config of module
+	   * Reload module's configuration
 	   */
 	  virtual void 	reload(void) = 0;
 
 	  /**
-	   * Get state of module config
-	   * In loading, is load, error in config, etc
+	   * Get state module's configuration
+	   * "In loading", "is loaded", "error in config", etc
 	   * @return
 	   */
 	  virtual const State & getState(void) const = 0;
@@ -63,14 +63,14 @@ namespace nx {
 	  virtual void setKey(const std::string & key, const IConfigKey & configKey) = 0;
 
 	  /**
-	   * Get key unique in config of module
+	   * Get unique key in module's configuration
 	   * @param key
 	   * @return const IConfigKey &
 	   */
 	  virtual const IConfigKey & getKeyOne(const std::string & key) const = 0;
 
 	  /**
-	   * Get list of key in config of module
+	   * Get list of keys in module's configuration
 	   * @param key
 	   * @return const std::vector<IConfigkey> &
 	   */

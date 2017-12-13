@@ -318,7 +318,7 @@
     <span class="p">{</span>
      <span class="k">public</span><span class="o">:</span>
       <span class="cm">/**
-       * State of module loading
+       * State for a module loading
        * 0: OFF / 1: UP
        */</span>
       <span class="k">enum</span> <span class="k">class</span> <span class="nc">State</span>
@@ -339,18 +339,18 @@
 
       <span class="cm">/**
        * Reload module
-       * @details Module is not stop and restart, module is always UP
+       * @details A module is not stop then restart, it's always UP
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">reload</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Set name of module
-       * @param name Name of module
+       * Set the name of the module
+       * @param name Name of the module
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get config
+       * Get the config
        * @return const IModuleConfig
        */</span>
       <span class="k">virtual</span> <span class="n">IModuleConfig</span> <span class="o">&amp;</span> <span class="n">getModuleConfig</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -368,9 +368,9 @@
 
 
       <span class="cm">/**
-       * Function call if event is register for this module and trigger
-       * @param type Type of event
-       * @param data Data event
+       * Callback for registered and triggered events
+       * @param type Type of the event
+       * @param data Data of the event
        * @return
        */</span>
       <span class="k">virtual</span> <span class="n">IHooks</span><span class="o">::</span><span class="n">ReturnEvent</span> <span class="n">triggerEvent</span><span class="p">(</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="n">type</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -380,37 +380,37 @@
 <p>L&#39;interface IModuleCore définit un ensemble de fonctions d&#39;un module.</p>
 
 <aside class="notice">
-Tous les modules doivent implementer toutes les **fonctions** de **l'interface**.
+Tous les modules doivent implementer toutes les fonctions de l'interface.
 </aside>
 <h1 id='iapiserver'>IAPIServer</h1>
 <blockquote>
 <p>IAPIServer header</p>
 </blockquote>
-<pre class="highlight cpp"><code><span class="k">namespace</span>  <span class="n">nx</span> <span class="p">{</span>
+<pre class="highlight cpp"><code><span class="k">namespace</span> <span class="n">nx</span> <span class="p">{</span>
 <span class="k">class</span> <span class="nc">IAPIServer</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
-   * Get hooks API server
-   * @attention This functions allow edit of reference
+   * Get hooks from server's API
+   * @attention This function allows edition of references
    * @return
    */</span>
   <span class="k">virtual</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-   * Get hooks API server
+   * Get hooks from server's API
    * @return
    */</span>
   <span class="k">virtual</span> <span class="k">const</span> <span class="n">IHooks</span> <span class="o">&amp;</span> <span class="n">getHooks</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-  * Get logger API server
-  * @attention This functions allow edit of reference
+  * Get logger from server's API
+  * @attention This function allows edit of reference
   * @return
   */</span>
   <span class="k">virtual</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-  * Get logger API server
+  * Get logger from server's API
   * @return
   */</span>
   <span class="k">virtual</span> <span class="k">const</span> <span class="n">ILogger</span> <span class="o">&amp;</span> <span class="n">getLogger</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -430,7 +430,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <span class="k">class</span> <span class="nc">ILogger</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
-   * @class Define level of log
+   * @class Defines a level of log
    */</span>
   <span class="k">enum</span> <span class="k">class</span> <span class="nc">Level</span> <span class="p">{</span>
     <span class="n">DEFAULT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -442,7 +442,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
   <span class="p">};</span>
 
   <span class="cm">/**
-   * Log message
+   * Log a message
    * @param level Type of log
    * @param msg Message
    */</span>
@@ -452,25 +452,24 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
    * Log default message
    * @param msg
    */</span>
-
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logDefault</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
   <span class="cm">/**
    * Log info message
    * @param msg
    */</span>
-
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logInfo</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
   <span class="cm">/**
    * Log success message
    * @param msg
    */</span>
-
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logSuccess</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
   <span class="cm">/**
    * Log warning message
    * @param msg
    */</span>
-
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">logWarning</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
@@ -528,7 +527,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <span class="k">class</span> <span class="nc">IHooks</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
-   * Define type of hook define
+   * Defines the hook's type
    */</span>
   <span class="k">enum</span> <span class="k">class</span> <span class="nc">Types</span> <span class="p">{</span>
     <span class="n">DEFAULT</span>         <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -548,29 +547,29 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
   <span class="p">};</span>
 
   <span class="cm">/**
-   * Get list of hooks Register
+   * Get a list of registered hooks
    * @return
    */</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">nexusZiaApi</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">EnumClassHash</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getAllHooksRegister</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">nx</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">EnumClassHash</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getAllHooksRegister</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-   * Get module register for type
-   * @param name Module name
+   * Get registered module by type
+   * @param name Module's name
    * @return
    */</span>
-  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getModuleRegisterForType</span><span class="p">(</span><span class="k">const</span> <span class="n">nexusZiaApi</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="n">type</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">getModuleRegisterForType</span><span class="p">(</span><span class="k">const</span> <span class="n">nx</span><span class="o">::</span><span class="n">IHooks</span><span class="o">::</span><span class="n">Types</span> <span class="n">type</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-   * Add hook register
-   * @param type Type hooks
-   * @param name Name of module
+   * Add hook registration
+   * @param type Hook's type
+   * @param name Module's name
    */</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">subscribe</span><span class="p">(</span><span class="k">const</span> <span class="n">Types</span> <span class="o">&amp;</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-   * Remove hook register
-   * @param type Type hooks
-   * @param name Name of module
+   * Remove hook registration
+   * @param type Hook's type
+   * @param name Module's name
    */</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">unSubscribe</span><span class="p">(</span><span class="k">const</span> <span class="n">Types</span> <span class="o">&amp;</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
@@ -625,7 +624,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <span class="k">class</span> <span class="nc">IHttpHeader</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**
-   * Set key of header HTTP
+   * Set the key for the HTTP's header
    * @param key
    * @param value
    * @return
@@ -633,7 +632,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="cm">/**
-   * Get key of header HTTP
+   * Get the key for the HTTP's header
    * @param key
    * @return
    */</span>
@@ -668,8 +667,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 
     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setMethod</span><span class="p">(</span><span class="n">Method</span> <span class="n">method</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="c1">// fixme uri or url ?
-</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setURI</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">uri</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setURI</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">uri</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
@@ -682,48 +680,48 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
   <span class="k">class</span> <span class="nc">IHttpResponse</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IHttpHeader</span> <span class="p">{</span>
    <span class="k">public</span><span class="o">:</span>
     <span class="k">enum</span> <span class="k">class</span> <span class="nc">StatusCode</span> <span class="p">{</span>
-      <span class="n">UNDEFINED</span>                         <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="n">UNDEFINED</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 
-      <span class="c1">// INFORMATIONAL
-</span>      <span class="n">CONTINUE</span>                              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
-      <span class="n">SWITCHING_PROTOCOLS</span>               <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
+      <span class="c1">// INFORMATION
+</span>      <span class="n">CONTINUE</span>              <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="n">SWITCHING_PROTOCOLS</span>       <span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
 
       <span class="c1">// SUCCESS
-</span>      <span class="n">OK</span>                              <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
-      <span class="n">CREATED</span>                         <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
-      <span class="n">ACCEPTED</span>                        <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
-      <span class="n">NON_AUTHORITATIVE_INFORMATION</span>   <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
-      <span class="n">NO_CONTENT</span>                      <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
-      <span class="n">RESET_CONTENT</span>                   <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
-      <span class="n">PARTIAL_CONTENT</span>                 <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
+</span>      <span class="n">OK</span>                            <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+      <span class="n">CREATED</span>                       <span class="o">=</span> <span class="mi">201</span><span class="p">,</span>
+      <span class="n">ACCEPTED</span>                      <span class="o">=</span> <span class="mi">202</span><span class="p">,</span>
+      <span class="n">NON_AUTHORITATIVE_INFORMATION</span>     <span class="o">=</span> <span class="mi">203</span><span class="p">,</span>
+      <span class="n">NO_CONTENT</span>                    <span class="o">=</span> <span class="mi">204</span><span class="p">,</span>
+      <span class="n">RESET_CONTENT</span>                     <span class="o">=</span> <span class="mi">205</span><span class="p">,</span>
+      <span class="n">PARTIAL_CONTENT</span>                   <span class="o">=</span> <span class="mi">206</span><span class="p">,</span>
 
       <span class="c1">// REDIRECTION
-</span>      <span class="n">MULTIPLE_CHOICES</span>                    <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
-      <span class="n">MOVED_PERMANENTLY</span>                   <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
-      <span class="n">FOUND</span>                                 <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
-      <span class="n">SEE_OTHER</span>                             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
-      <span class="n">NOT_MODIFIED</span>                        <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
-      <span class="n">USE_PROXY</span>                       <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
-      <span class="n">TEMPORARY_REDIRECT</span>              <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
+</span>      <span class="n">MULTIPLE_CHOICES</span>          <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+      <span class="n">MOVED_PERMANENTLY</span>         <span class="o">=</span> <span class="mi">301</span><span class="p">,</span>
+      <span class="n">FOUND</span>             <span class="o">=</span> <span class="mi">302</span><span class="p">,</span>
+      <span class="n">SEE_OTHER</span>             <span class="o">=</span> <span class="mi">303</span><span class="p">,</span>
+      <span class="n">NOT_MODIFIED</span>          <span class="o">=</span> <span class="mi">304</span><span class="p">,</span>
+      <span class="n">USE_PROXY</span>                         <span class="o">=</span> <span class="mi">305</span><span class="p">,</span>
+      <span class="n">TEMPORARY_REDIRECT</span>                <span class="o">=</span> <span class="mi">307</span><span class="p">,</span>
 
       <span class="c1">// CLIENT ERROR
-</span>      <span class="n">BAD_REQUEST</span>                     <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
-      <span class="n">UNAUTHORIZED</span>                    <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
-      <span class="n">PAYMENT_REQUIRED</span>                <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
-      <span class="n">FORBIDDEN</span>                       <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
-      <span class="n">NOT_FOUND</span>                       <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
-      <span class="n">METHOD_NOT_ALLOWED</span>                <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
-      <span class="n">NOT_ACCEPTABLE</span>                        <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
-      <span class="n">PROXY_AUTHENTICATION_REQUIRED</span>   <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
-      <span class="n">REQUEST_TIME_OUT</span>                    <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
-      <span class="n">CONFLICT</span>                        <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
-      <span class="n">GONE</span>                              <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
-      <span class="n">LENGTH_REQUIRED</span>                 <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
-      <span class="n">PRECONDITION_FAILED</span>             <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
-      <span class="n">REQUEST_ENTITY_TOO_LARGE</span>        <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
-      <span class="n">REQUEST_URI_TOO_LARGE</span>           <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
-      <span class="n">UNSUPPORTED_MEDIA_TYPE</span>          <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
-      <span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span> <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
+</span>      <span class="n">BAD_REQUEST</span>                       <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
+      <span class="n">UNAUTHORIZED</span>                  <span class="o">=</span> <span class="mi">401</span><span class="p">,</span>
+      <span class="n">PAYMENT_REQUIRED</span>              <span class="o">=</span> <span class="mi">402</span><span class="p">,</span>
+      <span class="n">FORBIDDEN</span>                     <span class="o">=</span> <span class="mi">403</span><span class="p">,</span>
+      <span class="n">NOT_FOUND</span>                     <span class="o">=</span> <span class="mi">404</span><span class="p">,</span>
+      <span class="n">METHOD_NOT_ALLOWED</span>            <span class="o">=</span> <span class="mi">405</span><span class="p">,</span>
+      <span class="n">NOT_ACCEPTABLE</span>            <span class="o">=</span> <span class="mi">406</span><span class="p">,</span>
+      <span class="n">PROXY_AUTHENTICATION_REQUIRED</span> <span class="o">=</span> <span class="mi">407</span><span class="p">,</span>
+      <span class="n">REQUEST_TIME_OUT</span>          <span class="o">=</span> <span class="mi">408</span><span class="p">,</span>
+      <span class="n">CONFLICT</span>                      <span class="o">=</span> <span class="mi">409</span><span class="p">,</span>
+      <span class="n">GONE</span>                          <span class="o">=</span> <span class="mi">410</span><span class="p">,</span>
+      <span class="n">LENGTH_REQUIRED</span>                   <span class="o">=</span> <span class="mi">411</span><span class="p">,</span>
+      <span class="n">PRECONDITION_FAILED</span>               <span class="o">=</span> <span class="mi">412</span><span class="p">,</span>
+      <span class="n">REQUEST_ENTITY_TOO_LARGE</span>          <span class="o">=</span> <span class="mi">413</span><span class="p">,</span>
+      <span class="n">REQUEST_URI_TOO_LARGE</span>             <span class="o">=</span> <span class="mi">414</span><span class="p">,</span>
+      <span class="n">UNSUPPORTED_MEDIA_TYPE</span>            <span class="o">=</span> <span class="mi">415</span><span class="p">,</span>
+      <span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span>   <span class="o">=</span> <span class="mi">416</span><span class="p">,</span>
       <span class="n">EXPECTATION_FAILED</span>                <span class="o">=</span> <span class="mi">417</span><span class="p">,</span>
 
       <span class="c1">// SERVER ERROR
@@ -732,7 +730,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
       <span class="n">BAD_GATEWAY</span>                       <span class="o">=</span> <span class="mi">502</span><span class="p">,</span>
       <span class="n">SERVICE_UNAVAILABLE</span>               <span class="o">=</span> <span class="mi">503</span><span class="p">,</span>
       <span class="n">GATEWAY_TIME_OUT</span>                  <span class="o">=</span> <span class="mi">504</span><span class="p">,</span>
-      <span class="n">HTTP_VERSION_NOT_SUPPORTED</span>      <span class="o">=</span> <span class="mi">505</span>
+      <span class="n">HTTP_VERSION_NOT_SUPPORTED</span>        <span class="o">=</span> <span class="mi">505</span>
     <span class="p">};</span>
 
     <span class="k">virtual</span> <span class="n">StatusCode</span> <span class="n">getStatusCode</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -773,7 +771,7 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
     <span class="p">{</span>
      <span class="k">public</span><span class="o">:</span>
       <span class="cm">/**
-       * State of config loading
+       * State of config for loading
        */</span>
       <span class="k">enum</span> <span class="k">class</span> <span class="nc">State</span>
       <span class="p">{</span>
@@ -784,24 +782,24 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
       <span class="p">};</span>
 
       <span class="cm">/**
-       * Init config of module
+       * Init module's configuration
        * Default value of each key, etc
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Load config of module
+       * Load module's configuration
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">load</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Reload config of module
+       * Reload module's configuration
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span>  <span class="n">reload</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get state of module config
-       * In loading, is load, error in config, etc
+       * Get state module's configuration
+       * "In loading", "is loaded", "error in config", etc
        * @return
        */</span>
       <span class="k">virtual</span> <span class="k">const</span> <span class="n">State</span> <span class="o">&amp;</span> <span class="n">getState</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -815,14 +813,14 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
       <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">,</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">configKey</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get key unique in config of module
+       * Get unique key in module's configuration
        * @param key
        * @return const IConfigKey &amp;
        */</span>
       <span class="k">virtual</span> <span class="k">const</span> <span class="n">IConfigKey</span> <span class="o">&amp;</span> <span class="n">getKeyOne</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get list of key in config of module
+       * Get list of keys in module's configuration
        * @param key
        * @return const std::vector&lt;IConfigkey&gt; &amp;
        */</span>
@@ -831,7 +829,22 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
 <span class="p">}</span>
 </code></pre>
 <p>L&#39;interface <em>IConfig</em> permet de définir un <strong>fichier de configuration</strong> d&#39;un <strong>module</strong>.</p>
-<h1 id='iconfigkey'>IConfigKey</h1>
+
+<p>Les fichiers de configuration sont au format <strong>JSON</strong>, comme dans l&#39;exemple, en bas a droite.</p>
+
+<blockquote>
+<p>Exemple de configuration</p>
+</blockquote>
+<pre class="highlight plaintext"><code>moduleName {
+  myScope {
+    mykey: "34"
+    myKey2: "45"
+  }
+  myScope2 {
+    myKey: "34"
+  }
+}
+</code></pre><h1 id='iconfigkey'>IConfigKey</h1>
 <blockquote>
 <p>IConfigKey header</p>
 </blockquote>
@@ -844,45 +857,45 @@ Cette interface est implémentée par le serveur ZIA et non les modules.
       <span class="p">};</span>
 
       <span class="cm">/**
-       * Set type of config key
+       * Set the type of the configuration's key
        * @param type
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setType</span><span class="p">(</span><span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">type</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get type of config key
+       * Get the type of the configuration's key
        * @return
        */</span>
       <span class="k">virtual</span> <span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">getType</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Set name of config key
+       * Set name of the configuration's key
        * @param type
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setName</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get name of config key
+       * Get name of the configuration's key
        * @return
        */</span>
       <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getName</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Set value of config key
-       * @attention Not for scope type
+       * Set value of the configuration's key
+       * @attention Not for "scope" type
        * @param type
        */</span>
       <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setValue</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get value of config key
+       * Get value of the configuration's key
        * @attention Return "" for scope
        * @return
        */</span>
       <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">getValue</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="cm">/**
-       * Get value of config key
+       * Get value of the configuration's key
        * @attention Return IConfigKey empty for value
        * @return
        */</span>

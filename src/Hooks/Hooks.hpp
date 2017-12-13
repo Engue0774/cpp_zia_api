@@ -22,7 +22,7 @@ namespace nx {
 class IHooks {
  public:
   /**
-   * Define type of hook define
+   * Defines the hook's type
    */
   enum class Types {
     DEFAULT			= 0,
@@ -42,29 +42,29 @@ class IHooks {
   };
 
   /**
-   * Get list of hooks Register
+   * Get a list of registered hooks
    * @return
    */
   virtual const std::unordered_map<nx::IHooks::Types, std::vector<std::string>, EnumClassHash> & getAllHooksRegister(void) const = 0;
 
   /**
-   * Get module register for type
-   * @param name Module name
+   * Get registered module by type
+   * @param name Module's name
    * @return
    */
   virtual const std::vector<std::string> & getModuleRegisterForType(const nx::IHooks::Types type) const = 0;
 
   /**
-   * Add hook register
-   * @param type Type hooks
-   * @param name Name of module
+   * Add hook registration
+   * @param type Hook's type
+   * @param name Module's name
    */
   virtual void subscribe(const Types & type, const std::string & name) = 0;
 
   /**
-   * Remove hook register
-   * @param type Type hooks
-   * @param name Name of module
+   * Remove hook registration
+   * @param type Hook's type
+   * @param name Module's name
    */
   virtual void unSubscribe(const Types & type, const std::string & name) = 0;
 };

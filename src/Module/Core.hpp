@@ -23,7 +23,7 @@ namespace nx {
 	{
 	 public:
 	  /**
-	   * State of module loading
+	   * State for a module loading
 	   * 0: OFF / 1: UP
 	   */
 	  enum class State
@@ -44,18 +44,18 @@ namespace nx {
 
 	  /**
 	   * Reload module
-	   * @details Module is not stop and restart, module is always UP
+	   * @details A module is not stop then restart, it's always UP
 	   */
 	  virtual void	reload(void) = 0;
 
 	  /**
-	   * Set name of module
-	   * @param name Name of module
+	   * Set the name of the module
+	   * @param name Name of the module
 	   */
 	  virtual void	setName(const std::string & name) = 0;
 
 	  /**
-	   * Get config
+	   * Get the config
 	   * @return const IModuleConfig
 	   */
 	  virtual IModuleConfig & getModuleConfig(void) = 0;
@@ -73,9 +73,9 @@ namespace nx {
 
 
 	  /**
-	   * Function call if event is register for this module and trigger
-	   * @param type Type of event
-	   * @param data Data event
+	   * Callback for registered and triggered events
+	   * @param type Type of the event
+	   * @param data Data of the event
 	   * @return
 	   */
 	  virtual IHooks::ReturnEvent triggerEvent(IHooks::Types type, void *data) = 0;

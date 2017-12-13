@@ -17,7 +17,7 @@ namespace nx {
 class ILogger {
  public:
   /**
-   * @class Define level of log
+   * @class Defines a level of log
    */
   enum class Level {
 	DEFAULT = 0,
@@ -29,7 +29,7 @@ class ILogger {
   };
 
   /**
-   * Log message
+   * Log a message
    * @param level Type of log
    * @param msg Message
    */
@@ -39,25 +39,24 @@ class ILogger {
    * Log default message
    * @param msg
    */
-
   virtual void logDefault(const std::string & msg) = 0;
+
   /**
    * Log info message
    * @param msg
    */
-
   virtual void logInfo(const std::string & msg) = 0;
+
   /**
    * Log success message
    * @param msg
    */
-
   virtual void logSuccess(const std::string & msg) = 0;
+
   /**
    * Log warning message
    * @param msg
    */
-
   virtual void logWarning(const std::string & msg) = 0;
 
   /**

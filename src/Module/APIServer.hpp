@@ -18,27 +18,27 @@ namespace nx {
 class IAPIServer {
  public:
   /**
-   * Get hooks API server
-   * @attention This functions allow edit of reference
+   * Get hooks from server's API
+   * @attention This function allows edition of references
    * @return
    */
   virtual IHooks & getHooks(void) = 0;
 
   /**
-   * Get hooks API server
+   * Get hooks from server's API
    * @return
    */
   virtual const IHooks & getHooks(void) const = 0;
 
   /**
-  * Get logger API server
-  * @attention This functions allow edit of reference
+  * Get logger from server's API
+  * @attention This function allows edit of reference
   * @return
   */
   virtual ILogger & getLogger(void) = 0;
 
   /**
-  * Get logger API server
+  * Get logger from server's API
   * @return
   */
   virtual const ILogger & getLogger(void) const = 0;
