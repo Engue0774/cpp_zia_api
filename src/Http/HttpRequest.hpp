@@ -35,7 +35,6 @@ namespace nx {
 
     virtual void setMethod(Method method) = 0;
 
-    // fixme uri or url ?
     virtual void setURI(const std::string &uri) = 0;
   };
 }

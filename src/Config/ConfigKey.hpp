@@ -22,45 +22,45 @@ namespace nx {
 	  };
 
 	  /**
-	   * Set type of config key
+	   * Set the type of the configuration's key
 	   * @param type
 	   */
 	  virtual void setType(const Type & type) = 0;
 
 	  /**
-	   * Get type of config key
+	   * Get the type of the configuration's key
 	   * @return
 	   */
 	  virtual const Type & getType(void) const = 0;
 
 	  /**
-	   * Set name of config key
+	   * Set name of the configuration's key
 	   * @param type
 	   */
 	  virtual void setName(const std::string & name) = 0;
 
 	  /**
-	   * Get name of config key
+	   * Get name of the configuration's key
 	   * @return
 	   */
 	  virtual const std::string & getName(void) const = 0;
 
 	  /**
-	   * Set value of config key
-	   * @attention Not for scope type
+	   * Set value of the configuration's key
+	   * @attention Not for "scope" type
 	   * @param type
 	   */
 	  virtual void setValue(const std::string & value) = 0;
 
 	  /**
-	   * Get value of config key
+	   * Get value of the configuration's key
 	   * @attention Return "" for scope
 	   * @return
 	   */
 	  virtual const std::string & getValue(void) const = 0;
 
 	  /**
-	   * Get value of config key
+	   * Get value of the configuration's key
 	   * @attention Return IConfigKey empty for value
 	   * @return
 	   */

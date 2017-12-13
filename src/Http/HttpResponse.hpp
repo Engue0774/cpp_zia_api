@@ -20,7 +20,7 @@ namespace nx {
     enum class StatusCode {
       UNDEFINED		= 0,
 
-      // INFORMATIONAL
+      // INFORMATION
       CONTINUE 				= 100,
       SWITCHING_PROTOCOLS 		= 101,
 

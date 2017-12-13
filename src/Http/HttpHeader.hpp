@@ -17,7 +17,7 @@ namespace nx {
 class IHttpHeader {
  public:
   /**
-   * Set key of header HTTP
+   * Set the key for the HTTP's header
    * @param key
    * @param value
    * @return
@@ -25,7 +25,7 @@ class IHttpHeader {
   virtual void setKey(const std::string & key, const std::string & value) = 0;
 
   /**
-   * Get key of header HTTP
+   * Get the key for the HTTP's header
    * @param key
    * @return
    */

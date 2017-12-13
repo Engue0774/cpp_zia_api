@@ -12,7 +12,7 @@
 #define NEXUSZIAAPI_NEXUSZIAAPI_HPP
 
 /**
- *	@file This header is for include all header of API
+ *	@file This file includes all the headers for the API
  */
 
 #include "Hooks/Hooks.hpp"
