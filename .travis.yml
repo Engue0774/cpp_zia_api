@@ -1,7 +1,7 @@
 dist: trusty
 language: cpp
 compiler: g++
-script: mkdir build && cd build && cmake .. && cmake --build . ; if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cd .. && mkdir examples/modules/LogEmail/build && cd examples/modules/LogEmail/build && cmake .. && cmake --build . ; fi
+script: mkdir build && cd build && cmake .. && cmake --build . ; if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cd .. && mkdir examples/modules/LogEmail/build && cd examples/modules/LogEmail/build && cmake .. && cmake --build . && cd ../../../../build ; fi ; ./nexusZiaApi
 matrix:
   include:
   #Linux GCC OLD
